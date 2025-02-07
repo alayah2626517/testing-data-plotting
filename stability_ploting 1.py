@@ -14,7 +14,7 @@ def parse_value(value):
     if isinstance(value, str) and value.endswith('%'):
         return float(value.strip('%')) / 100
     else:
-        reture float(value)
+        reture value
 
 
 def run_app():
