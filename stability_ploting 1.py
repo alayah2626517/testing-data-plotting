@@ -16,6 +16,7 @@ def run_app():
     root = tk.Tk()
     root.title("Stability data plotting tool")
     root.geometry('380x400')
+     root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
     ## 輸入框: Batch
@@ -37,6 +38,7 @@ def run_app():
             print(f"Successfully selecting: {file_path}")
     label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen2", bd=10, relief='groove')
     label_frame_2.pack(padx=20, fill="x")
+    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 14, 'bold'), bg="DarkOliveGreen2").grid(row=0, column=0, padx=25, pady=10)
     file_path = None
     tk.Button(label_frame_2, text="Select file", command=select_file).pack(pady=20)
 
