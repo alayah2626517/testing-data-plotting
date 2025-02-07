@@ -74,6 +74,8 @@ def run_app():
                 value_limit = np.linspace(lower_limit, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
+            decimal = len(str(value_limit[0])split(".")[1])
+            value_limit = [round(value, decimal) for value in value_limit]
             print(value_limit)
 
         #     #製圖
