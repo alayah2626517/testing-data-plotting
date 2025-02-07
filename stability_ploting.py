@@ -13,6 +13,7 @@ def run_app():
     root = tk.Tk()
     root.title("Stability data plotting tool")
     root.geometry('380x400')
+    root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
     # 輸入框: Batch
