@@ -11,8 +11,11 @@ import numpy as np
 import os
 
 def parse_value(value):
-    if value.endswith('%'):
+    
+    if isinstance(value, str) and value.endswith('%'):
         return value* 100
+    elif value is None:
+        return None
     else:
         return value
         
