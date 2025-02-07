@@ -11,7 +11,7 @@ import numpy as np
 import os
 
 def parse_value(value):
-    if isinstance(value, str) and value.endswith('%'):
+    if value.endswith('%'):
         return value* 100
     else:
         return float(value)
@@ -61,7 +61,7 @@ def run_app():
             sheet = wb[sheet]
             data_total = []
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
-                processed_row = (parse_value(value) for value in data)
+                processed_row = [parse_value(value) for value in data]
                 data_total.append(processed_row)
             print(data_total)
             
