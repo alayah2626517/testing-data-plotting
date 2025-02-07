@@ -26,7 +26,7 @@ def run_app():
     tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14), bg="light blue").grid(row=0, column=0, padx=50, pady=10)
     batch_num = tk.StringVar()
     batch_entry = tk.Spinbox(label_frame, from_=1, to=50, textvariable=batch_num, font=("Arial", 14))
-    batch_entry.grid(row=1, column=0, padx=50, pady=20)
+    batch_entry.grid(row=1, column=0, padx=20, pady=10)
 
     ## 文件選擇按鈕
     def select_file():
