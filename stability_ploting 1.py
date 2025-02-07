@@ -61,14 +61,17 @@ def run_app():
             num = 10
             value_limit = None
             if data_total[0][2] == "±":
+                global lower_limit, upper_limit
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
                 value_limit = np.linspace(lower_limit, upper_limit, num=num)
             elif data_total[0][2] == "<" or data_total[0][2] == "≦":
+                global upper_limit
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.1
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit, num=num)
             elif data_total[0][2] == ">" or data_total[0][2] == "≧":
+                global lower_limit
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.1
                 value_limit = np.linspace(lower_limit, lower_limit+distance*(num-1), num=num)
@@ -88,6 +91,8 @@ def run_app():
                 # x_axis = tuple(x for x in data_total[1][1:] if x is not None)
                 x_axis = data_total[1][1:]
                 plt.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
+            plt.axhline(y=lower_limit, color='dark red', linestyle='--', linewidth=1.5)
+            plt.axhline(y=upper_limit, color='dark red', linestyle='--', linewidth=1.5)
             plt.title(title, fontsize=18, fontweight='bold')
             plt.xlabel("Time point (months)")
             plt.ylabel(test_item, fontsize=15)
