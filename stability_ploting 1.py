@@ -75,7 +75,7 @@ def run_app():
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
-            value_limit = [round(value, decimal) for value in value_limit]
+            value_limit = [round(float(value), decimal) for value in value_limit]
             print(value_limit)
 
         #     #製圖
