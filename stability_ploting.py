@@ -42,6 +42,9 @@ def run_app():
             print(f"Successfully selecting: {file_path}")
     tk.Button(label_frame_2, text="Select file", command=select_file).pack(pady=20)
 
+    ## 文件導入按鈕
+    label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen2", bd=10, relief='groove')
+    label_frame_2.pack(padx=20, fill="x")
     def load_sheet():
         global file_path
         batch_value = batch_num.get()
