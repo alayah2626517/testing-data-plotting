@@ -99,8 +99,8 @@ def run_app():
             root.quit()
     label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
     label_frame_3.pack(padx=10, pady=5, fill="x")
-    tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=0, padx=60, pady=10)
-    tk.Label(label_frame_3, text="Selecting folder to save chart after loading the file.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, padx=5, pady=10)
+    tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=0, padx=55, pady=10)
+    tk.Label(label_frame_3, text="Selecting folder to save chart after loading the file.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, padx=6, pady=10)
 
     
     root.mainloop()
