@@ -22,7 +22,7 @@ def run_app():
 
     # 輸入框: Batch
     label_frame = tk.LabelFrame(root, text="Step 1", bg="light blue", bd=10, relief='groove')
-    # label_frame.pack(padx=10, pady=10)
+    label_frame.pack(padx=10, pady=10)
     # label_frame.pack_propagate(False)
     tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14, 'bold'), bg="light blue").grid(row=0, column=0, padx=50, pady=5)
     batch_num = tk.StringVar()
