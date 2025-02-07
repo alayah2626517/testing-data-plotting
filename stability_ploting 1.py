@@ -11,7 +11,7 @@ import numpy as np
 import os
 
 def parse_value(value):
-    if isinstance(value, str) and value.endswith():
+    if isinstance(value, str) and value.endswith("%"):
         return value* 100
     elif value is None:
         return None
@@ -74,7 +74,7 @@ def run_app():
             data_total = []
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
                 data_total.append(data)
-            data_total = process_data(data_total)
+            # data_total = process_data(data_total)
             print(data_total)
             
         #     # 定義各項變數
