@@ -40,7 +40,7 @@ def run_app():
     label_frame_2.pack(padx=20, fill="x")
     tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 14, 'bold'), bg="DarkOliveGreen2").grid(row=0, column=0, padx=25, pady=10)
     file_path = None
-    tk.Button(label_frame_2, text="Select file", command=select_file).pack(pady=20)
+    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=1, column=0)
 
     
      ## 文件導入按鈕
