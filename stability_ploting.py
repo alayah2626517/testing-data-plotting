@@ -30,7 +30,7 @@ def run_app():
     batch_entry.grid(row=1, column=0, padx=50, pady=10)
 
     # # 文件選擇按鈕
-    label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliverGreen1", bd=10, relief='groove')
+    label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen1", bd=10, relief='groove')
     label_frame_2.pack(padx=20, pady=20, fill="x")
     file_path = None
     def select_file():
