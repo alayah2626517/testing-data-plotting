@@ -25,8 +25,8 @@ def run_app():
     label_frame.pack(padx=10, pady=10, fill="both", expand=True)
     tk.Label(root, text="Maximmum # of Batch ?", font=('Arial', 14, 'bold')).pack(pady=5)
     batch_num = tk.StringVar()
-    tk.Entry(root, textvariable=batch_num).pack(pady=10).grid(row=0, column=0)
-    
+    batch_entry = tk.Entry(root, label_frame, textvariable=batch_num).pack(pady=10)
+    batch_entry.grid(row=0, column=0)
 
 
     # # 文件選擇按鈕
