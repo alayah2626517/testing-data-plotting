@@ -1,3 +1,7 @@
+#### Purpose: This script is for plotting testing data from excel, beware of the layout of data.
+#### Author: Hsin-Yun Hung
+#### Release time: 2025/02/
+
 import tkinter as tk
 from tkinter import filedialog
 from tkinter.constants import *
@@ -6,23 +10,24 @@ from openpyxl import load_workbook
 import numpy as np
 import os
 
-# 擺好位置
 
 def run_app():
-    # 建立窗口
+    ## 建立窗口
     root = tk.Tk()
     root.title("Stability data plotting tool")
     root.geometry('380x400')
     root.resizable(False, False)
    
-    # 輸入框: Batch
-    tk.Label(root, text="Maximmum Batch?", font=('Arial', 14, 'bold')).pack(pady=5)
+    ## 輸入框: Batch
+    label_frame = tk.LabelFrame(root, text="Step 1", bg="light blue", bd=10, relief='groove')
+    label_frame.pack(padx=20, pady=5)
+    label_frame.pack_propagate(False)
+    tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14, 'bold'), bg="light blue").grid(row=0, column=0, padx=50, pady=10)
     batch_num = tk.StringVar()
-    tk.Entry(root, textvariable=batch_num).pack(pady=10)
+    batch_entry = tk.Entry(label_frame, textvariable=batch_num)
+    batch_entry.grid(row=1, column=0, padx=50, pady=20)
 
-
-    # 文件選擇按鈕
-    file_path = None
+    ## 文件選擇按鈕
     def select_file():
         global file_path
         file_path = filedialog.askopenfilename(title="Select file", filetypes=[("All Files", "*.*")])
@@ -30,8 +35,12 @@ def run_app():
             return
         else:
             print(f"Successfully selecting: {file_path}")
+    label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen2", bd=10, relief='groove')
+    label_frame_2.pack(padx=20, fill="x")
+    file_path = None  
     tk.Button(root, text="Select file", command=select_file).pack(pady=10)
 
+     ## 文件導入按鈕
     def load_sheet():
         global file_path
         batch_value = batch_num.get()
@@ -76,7 +85,9 @@ def run_app():
             plt.grid(True)
             plt.savefig(f"{folder_path}/{title}.png", dpi=300)
         wb.close()
-    tk.Button(root, text="Load file", command=load_sheet).pack(pady=10)
+    label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
+    label_frame_3.pack(padx=20, fill="x")
+    tk.Button(label_frame_3, text="Load file", command=load_sheet).pack(pady=10)
 
     root.mainloop()
 
