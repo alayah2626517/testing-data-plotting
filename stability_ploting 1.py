@@ -10,6 +10,12 @@ from openpyxl import load_workbook
 import numpy as np
 import os
 
+def parse_value(value):
+    if isinstance(value, str) and value.endswith('%'):
+        return float(value.strip('%')) / 100
+    else:
+        reture float(value)
+
 
 def run_app():
     ## 建立窗口
@@ -55,8 +61,7 @@ def run_app():
             sheet = wb[sheet]
             data_total = []
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
-                data_total.append(data)
-            # print(data_total)
+                data_total.append(parse_value(data))
             
             # 定義各項變數
             condition = data_total[1][0]
