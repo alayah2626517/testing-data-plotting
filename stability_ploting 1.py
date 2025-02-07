@@ -78,27 +78,27 @@ def run_app():
             value_limit = [round(float(value), decimal) for value in value_limit]
             print(value_limit)
 
-        #     #製圖
-        #     title = f"{condition}-{test_item}"
-        #     datasets = data_total[2:]  # 數據本身
-        #     plt.figure(figsize=(10, 6))
-        #     for row in datasets:
-        #         label = row[0]  # 每一行的標籤
-        #         values = row[1:]  # 每一行的數據（跳過標籤）
-        #         # x_axis = tuple(x for x in data_total[1][1:] if x is not None)
-        #         x_axis = data_total[1][1:]
-        #         plt.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
-        #     plt.title(title, fontsize=18, fontweight='bold')
-        #     plt.xlabel("Time point (months)")
-        #     plt.ylabel(test_item, fontsize=15)
-        #     plt.yticks(value_limit, fontsize=12)
-        #     plt.grid(True, linestyle='--', alpha=0.6)
-        #     plt.legend()
-        #     plt.grid(True)
-        #     plt.savefig(f"{folder_path}/{title}.png", dpi=300)
-        # wb.close()
-        # if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
-        #     root.quit()
+            #製圖
+            title = f"{condition}-{test_item}"
+            datasets = data_total[2:]  # 數據本身
+            plt.figure(figsize=(10, 6))
+            for row in datasets:
+                label = row[0]  # 每一行的標籤
+                values = row[1:]  # 每一行的數據（跳過標籤）
+                # x_axis = tuple(x for x in data_total[1][1:] if x is not None)
+                x_axis = data_total[1][1:]
+                plt.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
+            plt.title(title, fontsize=18, fontweight='bold')
+            plt.xlabel("Time point (months)")
+            plt.ylabel(test_item, fontsize=15)
+            plt.yticks(value_limit, fontsize=12)
+            plt.grid(True, linestyle='--', alpha=0.6)
+            plt.legend()
+            plt.grid(True)
+            plt.savefig(f"{folder_path}/{title}.png", dpi=300)
+        wb.close()
+        if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
+            root.quit()
     label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
     label_frame_3.pack(padx=10, pady=5, fill="x")
     tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=0, padx=55, pady=10)
