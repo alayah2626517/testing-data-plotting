@@ -63,45 +63,45 @@ def run_app():
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
                 processed_row = (parse_value(value) for value in data)
                 data_total.append(processed_row)
-                
+            print(data_total)
             
-            # 定義各項變數
-            condition = data_total[1][0]
-            test_item = data_total[0][0]
-            num = 10
-            value_limit = None
-            if data_total[0][2] == "±":
-                low_limit = data_total[0][1]-data_total[0][3]
-                upper_limit = data_total[0][1]+data_total[0][3]
-                value_limit = np.linspace(low_limit, upper_limit, num=10)
-            elif data_total[0][2] == "<":
-                upper_limit = data_total[0][3]
-                distance = upper_limit*0.1
-                value_limit = np.linspace(upper_limit+distance*(num-1), upper_limit, num=num)
-            # else:
-            #     print("No specification defined.")            
+        #     # 定義各項變數
+        #     condition = data_total[1][0]
+        #     test_item = data_total[0][0]
+        #     num = 10
+        #     value_limit = None
+        #     if data_total[0][2] == "±":
+        #         low_limit = data_total[0][1]-data_total[0][3]
+        #         upper_limit = data_total[0][1]+data_total[0][3]
+        #         value_limit = np.linspace(low_limit, upper_limit, num=10)
+        #     elif data_total[0][2] == "<":
+        #         upper_limit = data_total[0][3]
+        #         distance = upper_limit*0.1
+        #         value_limit = np.linspace(upper_limit+distance*(num-1), upper_limit, num=num)
+        #     # else:
+        #     #     print("No specification defined.")            
 
-            #製圖
-            title = f"{condition}-{test_item}"
-            datasets = data_total[2:]  # 數據本身
-            plt.figure(figsize=(10, 6))
-            for row in datasets:
-                label = row[0]  # 每一行的標籤
-                values = row[1:]  # 每一行的數據（跳過標籤）
-                # x_axis = tuple(x for x in data_total[1][1:] if x is not None)
-                x_axis = data_total[1][1:]
-                plt.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
-            plt.title(title, fontsize=18, fontweight='bold')
-            plt.xlabel("Time point (months)")
-            plt.ylabel(test_item, fontsize=15)
-            plt.yticks(value_limit, fontsize=12)
-            plt.grid(True, linestyle='--', alpha=0.6)
-            plt.legend()
-            plt.grid(True)
-            plt.savefig(f"{folder_path}/{title}.png", dpi=300)
-        wb.close()
-        if messagebox.askyesno("Exit", "All charts have been successfully created. Do you want to exit?"):
-            root.quit()
+        #     #製圖
+        #     title = f"{condition}-{test_item}"
+        #     datasets = data_total[2:]  # 數據本身
+        #     plt.figure(figsize=(10, 6))
+        #     for row in datasets:
+        #         label = row[0]  # 每一行的標籤
+        #         values = row[1:]  # 每一行的數據（跳過標籤）
+        #         # x_axis = tuple(x for x in data_total[1][1:] if x is not None)
+        #         x_axis = data_total[1][1:]
+        #         plt.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
+        #     plt.title(title, fontsize=18, fontweight='bold')
+        #     plt.xlabel("Time point (months)")
+        #     plt.ylabel(test_item, fontsize=15)
+        #     plt.yticks(value_limit, fontsize=12)
+        #     plt.grid(True, linestyle='--', alpha=0.6)
+        #     plt.legend()
+        #     plt.grid(True)
+        #     plt.savefig(f"{folder_path}/{title}.png", dpi=300)
+        # wb.close()
+        # if messagebox.askyesno("Exit", "All charts have been successfully created. Do you want to exit?"):
+        #     root.quit()
     label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
     label_frame_3.pack(padx=10, pady=5, fill="x")
     tk.Button(label_frame_3, text="Load file", command=load_sheet).pack(pady=10)
