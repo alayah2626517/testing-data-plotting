@@ -61,6 +61,7 @@ def run_app():
             # 定義各項變數
             condition = data_total[1][0]
             test_item = data_total[0][0]
+            num = 10
             value_limit = None
             if data_total[0][2] == "±":
                 low_limit = data_total[0][1]-data_total[0][3]
@@ -69,7 +70,7 @@ def run_app():
             elif data_total[0][2] == "<":
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.1
-                value_limit = np.linspace(upper_limit+distance*(num-1), upper_limit, num=n10)
+                value_limit = np.linspace(upper_limit+distance*(num-1), upper_limit, num=num)
             # else:
             #     print("No specification defined.")            
 
