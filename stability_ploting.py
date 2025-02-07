@@ -1,3 +1,7 @@
+#### Purpose: This script is for plotting testing data from excel, beware of the layout of data.
+#### Author: Hsin-Yun Hung
+#### Release time: 2025/02/
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter.constants import *
@@ -16,16 +20,20 @@ def run_app():
     root.iconbitmap('EG logo.ico')
     root.configure(background='#000')
     root.resizable(False, False)
-   
+
     # 輸入框: Batch
+    label_frame = tk.LabelFrame(root, text="Step 1", width=400, heigh=180, bg="SteelBlue1", bd=10, relief='groove')
+    label_frame.pack(padx=200, pady=10)    
     tk.Label(root, text="Maximmum # of Batch ?", font=('Arial', 14, 'bold')).pack(pady=5)
     batch_num = tk.StringVar()
-    tk.Entry(root, textvariable=batch_num).pack(pady=10)
+    tk.Entry(root, textvariable=batch_num).pack(pady=50)
 
 
     # 文件選擇按鈕
+    label_frame = tk.LabelFrame(root, text="Step 2", width=400, heigh=100, bg="medium sea green", bd=10, relief='groove')
+    label_frame.pack(padx=200, pady=10)
+    
     file_path = None
-
     def select_file():
         global file_path
         file_path = filedialog.askopenfilename(title="Select file", filetypes=[("All Files", "*.*")])
