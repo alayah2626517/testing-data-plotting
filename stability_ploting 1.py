@@ -71,7 +71,7 @@ def run_app():
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit, num=num)
             elif data_total[0][2] == ">" or data_total[0][2] == "≧":
                 lower_limit = data_total[0][3]
-                distance = upper_limit*0.1
+                distance = lower_limit*0.1
                 value_limit = np.linspace(lower_limit, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")            
@@ -95,7 +95,7 @@ def run_app():
             plt.grid(True)
             plt.savefig(f"{folder_path}/{title}.png", dpi=300)
         wb.close()
-        if messagebox.askyesno("Exit", "All charts have been successfully created. Do you want to exit?"):
+        if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
             root.quit()
     label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
     label_frame_3.pack(padx=10, pady=5, fill="x")
