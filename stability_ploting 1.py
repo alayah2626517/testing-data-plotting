@@ -19,14 +19,10 @@ def parse_value(value):
         return value
         
 def process_data(data):
-    """
-    處理包含百分比、整數和小數的數據。
-    """
     processed_data = []
     for row in data:
         processed_row = [parse_value(value) for value in row]  # 逐項處理每個值
-        processed_data.append(processed_row)
-    
+        processed_data.append(processed_row)    
     return processed_data
 
 def run_app():
@@ -72,7 +68,7 @@ def run_app():
         for sheet in sheet_name:
             sheet = wb[sheet]
             data_total = []
-            for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
+            for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10):
                 data_total.append(data)
             # data_total = process_data(data_total)
             print(data_total)
