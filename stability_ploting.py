@@ -11,13 +11,14 @@ import os
 def run_app():
     # 建立窗口
     root = tk.Tk()
-    root.title("Stability data plotting tool")
+    root.title("Data plotting tool")
     root.geometry('380x400')
     root.iconbitmap('EG logo.ico')
+    root.configure(background='#000')
     root.resizable(False, False)
    
     # 輸入框: Batch
-    tk.Label(root, text="Maximmum Batch?", font=('Arial', 14, 'bold')).pack(pady=5)
+    tk.Label(root, text="Maximmum # of Batch ?", font=('Arial', 14, 'bold')).pack(pady=5)
     batch_num = tk.StringVar()
     tk.Entry(root, textvariable=batch_num).pack(pady=10)
 
