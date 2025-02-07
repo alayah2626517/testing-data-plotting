@@ -21,9 +21,9 @@ def run_app():
    
     ## 輸入框: Batch
     label_frame = tk.LabelFrame(root, width=380, height=100, text="Step 1", bg="light blue", bd=10, relief='groove')
-    label_frame.pack(padx=10, pady=10, fill="x")
+    label_frame.pack(padx=10, pady=5, fill="x")
     label_frame.pack_propagate(False)
-    tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14), bg="light blue").grid(row=0, column=0, padx=60, pady=10)
+    tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 13), bg="light blue").grid(row=0, column=0, padx=60, pady=10)
     batch_num = tk.StringVar()
     batch_entry = tk.Spinbox(label_frame, from_=1, to=50, textvariable=batch_num, font=("Arial", 12))
     batch_entry.grid(row=1, column=0, padx=60, pady=15)
@@ -92,7 +92,7 @@ def run_app():
     label_frame_3.pack(padx=10, pady=5, fill="x")
     tk.Button(label_frame_3, text="Load file", command=load_sheet).pack(pady=10)
 
-    root.mainloop()
+    root.destroy()
 
 if __name__ == "__main__":
     run_app()
