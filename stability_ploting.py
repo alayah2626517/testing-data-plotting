@@ -21,7 +21,7 @@ def run_app():
     root.resizable(False, False)
 
     # 輸入框: Batch
-    label_frame = tk.LabelFrame(root, text="Step 1", width=380, height=120, bg="light blue", bd=10, relief='groove')
+    label_frame = tk.LabelFrame(root, text="Step 1", width=380, height=100, bg="light blue", bd=10, relief='groove')
     label_frame.pack(padx=10, pady=10, fill="both", expand=True)
     label_frame.pack_propagate(False)
     tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14, 'bold'), bg="light blue").grid(row=0, column=1, padx=50, pady=20)
