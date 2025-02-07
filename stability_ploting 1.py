@@ -14,7 +14,7 @@ def parse_value(value):
     if value.endswith('%'):
         return value* 100
     else:
-        return float(value)
+        return value
         
 def process_data(data):
     """
