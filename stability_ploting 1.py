@@ -23,10 +23,10 @@ def run_app():
     label_frame = tk.LabelFrame(root, width=380, height=100, text="Step 1", bg="light blue", bd=10, relief='groove')
     label_frame.pack(padx=10, pady=10, fill="x")
     label_frame.pack_propagate(False)
-    tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14), bg="light blue").grid(row=0, column=0, padx=55, pady=10)
+    tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14), bg="light blue").grid(row=0, column=0, padx=60, pady=10)
     batch_num = tk.StringVar()
     batch_entry = tk.Spinbox(label_frame, from_=1, to=50, textvariable=batch_num, font=("Arial", 12))
-    batch_entry.grid(row=1, column=0, padx=50, pady=10)
+    batch_entry.grid(row=1, column=0, padx=60, pady=10)
 
     ## 文件選擇按鈕
     def select_file():
@@ -38,9 +38,9 @@ def run_app():
             print(f"Successfully selecting: {file_path}")
     label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen2", bd=10, relief='groove')
     label_frame_2.pack(padx=10, pady=5, fill="x")
-    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 12), bg="DarkOliveGreen2").grid(row=0, column=0, padx=50, pady=10)
+    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 12), bg="DarkOliveGreen2").grid(row=0, column=0, padx=60, pady=10)
     file_path = None
-    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=1, column=0, padx=50, pady=10)
+    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=1, column=0, padx=60, pady=10)
 
     
      ## 文件導入按鈕
