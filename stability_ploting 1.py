@@ -61,7 +61,9 @@ def run_app():
             sheet = wb[sheet]
             data_total = []
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
-                data_total.append(parse_value(data))
+                processed_row = (parse_value(value) for value in data)
+                data_total.append(processed_row)
+                
             
             # 定義各項變數
             condition = data_total[1][0]
