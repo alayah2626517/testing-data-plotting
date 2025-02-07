@@ -1,6 +1,6 @@
 #### Purpose: This script is for plotting testing data from excel, beware of the layout of data.
 #### Author: Hsin-Yun Hung
-#### Release time: 2025/02/07
+#### Inition version: 2025/02/07
 
 import tkinter as tk
 from tkinter import filedialog, messagebox
@@ -80,16 +80,21 @@ def run_app():
             #製圖
             title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
+            x_axis = data_total[1][1:]
             plt.figure(figsize=(10, 6))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = row[1:]  # 每一行的數據（跳過標籤）
-                # x_axis = tuple(x for x in data_total[1][1:] if x is not None)
                 x_axis = data_total[1][1:]
                 plt.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
             plt.axhline(y=lower_limit, color='dark red', linestyle='--', linewidth=1.5)
             plt.axhline(y=upper_limit, color='dark red', linestyle='--', linewidth=1.5)
             plt.title(title, fontsize=18, fontweight='bold')
+            
+            ### 製作表格
+            data_rows = [row[1:] for row in datasets]  # 每一行的數據
+            plt.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0.1, -0.35, 0.8, 0.3])
+            
             plt.xlabel("Time point (months)")
             plt.ylabel(test_item, fontsize=15)
             plt.yticks(value_limit, fontsize=12)
