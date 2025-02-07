@@ -27,11 +27,11 @@ def run_app():
     tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14, 'bold'), bg="light blue").grid(row=0, column=0, padx=50, pady=10)
     batch_num = tk.StringVar()
     batch_entry = tk.Entry(label_frame, textvariable=batch_num)
-    batch_entry.grid(row=1, column=0, padx=50, pady=10)
+    batch_entry.grid(row=1, column=0, padx=50, pady=20)
 
     # # 文件選擇按鈕
     label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen2", bd=10, relief='groove')
-    label_frame_2.pack(padx=20, pady=5, fill="x")
+    label_frame_2.pack(padx=20, fill="x")
     file_path = None
     def select_file():
         global file_path
@@ -40,7 +40,7 @@ def run_app():
             return
         else:
             print(f"Successfully selecting: {file_path}")
-    tk.Button(label_frame_2, text="Select file", command=select_file).pack(pady=10)
+    tk.Button(label_frame_2, text="Select file", command=select_file).pack(pady=20)
 
     def load_sheet():
         global file_path
