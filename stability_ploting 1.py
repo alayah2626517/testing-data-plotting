@@ -67,7 +67,7 @@ def run_app():
                 low_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
                 value_limit = np.linspace(low_limit, upper_limit, num=10)
-            else if data_total[0][2] == "<":
+            elif data_total[0][2] == "<":
                 upper_limit = data_total[0][3]
                 distance = 2
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit, num=num)
