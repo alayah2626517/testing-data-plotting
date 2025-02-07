@@ -14,7 +14,7 @@ def run_app():
     ## 建立窗口
     root = tk.Tk()
     root.title("Stability data plotting tool")
-    root.geometry('380x420')
+    root.geometry('380x410')
     root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
@@ -37,9 +37,9 @@ def run_app():
             print(f"Successfully selecting: {file_path}")
     label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen2", bd=10, relief='groove')
     label_frame_2.pack(padx=10, pady=5, fill="x")
-    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 12), bg="DarkOliveGreen2").grid(row=0, column=0, padx=60, pady=10)
+    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 12), bg="DarkOliveGreen2").grid(row=0, column=0, padx=55, pady=5)
     file_path = None
-    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=1, column=0, padx=60, pady=15)
+    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=1, column=0, padx=55, pady=15)
 
     
      ## 文件導入按鈕
@@ -100,7 +100,7 @@ def run_app():
     label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
     label_frame_3.pack(padx=10, pady=5, fill="x")
     tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=0, padx=60, pady=10)
-    tk.Label(label_frame_3, text="Selecting folder to save chart after loading the file.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, pady=10)
+    tk.Label(label_frame_3, text="Selecting folder to save chart after loading the file.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, padx=5, pady=10)
 
     
     root.mainloop()
