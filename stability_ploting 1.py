@@ -12,7 +12,7 @@ import os
 
 def parse_value(value):
     if isinstance(value, str) and value.endswith("%"):
-        return value* 100
+        return (value*100)
     elif value is None:
         return None
     else:
