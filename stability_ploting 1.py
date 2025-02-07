@@ -88,8 +88,8 @@ def run_app():
             plt.grid(True)
             plt.savefig(f"{folder_path}/{title}.png", dpi=300)
         wb.close()
-        if messagebox.askyesno("Exit", "All operations are completed. Do you want to exit?"):
-            root.destroy()
+        if messagebox.askyesno("Exit", "All charts have been successfully created. Do you want to exit?"):
+            root.quit()
     label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
     label_frame_3.pack(padx=10, pady=5, fill="x")
     tk.Button(label_frame_3, text="Load file", command=load_sheet).pack(pady=10)
