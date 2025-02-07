@@ -15,7 +15,7 @@ def run_app():
     ## 建立窗口
     root = tk.Tk()
     root.title("Stability data plotting tool")
-    root.geometry('380x400')
+    root.geometry('380x380')
     root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
@@ -26,7 +26,7 @@ def run_app():
     tk.Label(label_frame, text="Maximmum # of Batch ?", font=('Arial', 14), bg="light blue").grid(row=0, column=0, padx=60, pady=10)
     batch_num = tk.StringVar()
     batch_entry = tk.Spinbox(label_frame, from_=1, to=50, textvariable=batch_num, font=("Arial", 12))
-    batch_entry.grid(row=1, column=0, padx=60, pady=10)
+    batch_entry.grid(row=1, column=0, padx=60, pady=15)
 
     ## 文件選擇按鈕
     def select_file():
@@ -40,7 +40,7 @@ def run_app():
     label_frame_2.pack(padx=10, pady=5, fill="x")
     tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 12), bg="DarkOliveGreen2").grid(row=0, column=0, padx=60, pady=10)
     file_path = None
-    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=1, column=0, padx=60, pady=10)
+    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=1, column=0, padx=60, pady=15)
 
     
      ## 文件導入按鈕
