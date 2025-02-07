@@ -87,7 +87,7 @@ def run_app():
             plt.savefig(f"{folder_path}/{title}.png", dpi=300)
         wb.close()
     label_frame_3 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="khaki1", bd=10, relief='groove')
-    label_frame_3.pack(padx=20, fill="x")
+    label_frame_3.pack(padx=20, pady=10, fill="x")
     tk.Button(label_frame_3, text="Load file", command=load_sheet).pack(pady=10)
 
     root.mainloop()
