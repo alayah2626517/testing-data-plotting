@@ -71,8 +71,8 @@ def run_app():
                 upper_limit = data_total[0][3]
                 distance = 2
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit, num=num)
-            else:
-                print("No specification defined.")            
+            # else:
+            #     print("No specification defined.")            
 
             #製圖
             title = f"{condition}-{test_item}"
