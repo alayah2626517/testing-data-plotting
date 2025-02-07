@@ -18,7 +18,7 @@ def run_app():
     root.title("Data plotting tool")
     root.geometry('380x400')
     root.iconbitmap('EG logo.ico')
-    root.configure(background='#000')
+    # root.configure(background='#000')
     root.resizable(False, False)
 
     # 輸入框: Batch
