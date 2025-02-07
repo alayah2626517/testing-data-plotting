@@ -59,7 +59,7 @@ def run_app():
             condition = data_total[1][0]
             test_item = data_total[0][0]
             num = 10
-            value_limit = None
+            value_limit, lower_limit, upper_limit = None, None, None
             if data_total[0][2] == "±":
                 global lower_limit, upper_limit
                 lower_limit = data_total[0][1]-data_total[0][3]
@@ -79,8 +79,7 @@ def run_app():
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
             value_limit = [round(float(value), decimal) for value in value_limit]
-            print(value_limit)
-
+            
             #製圖
             title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
