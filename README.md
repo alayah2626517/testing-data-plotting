@@ -1,2 +1,2 @@
-stability ploting2 --> estabilished on jupyter notbook  
-stability_ploting --> estabilished on VS code
+stability ploting --> estabilished on jupyter notbook  
+stability_ploting_V0, final --> estabilished on VS code
