@@ -96,7 +96,8 @@ def run_app():
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
-            ax.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0, -0.55, 1, 0.3])
+            table_height = 0.3 + (batch_value * 0.02)
+            ax.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0, -0.5, 1, table_height])
             
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(test_item, fontsize=15)
