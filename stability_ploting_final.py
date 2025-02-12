@@ -60,13 +60,12 @@ def run_app():
             condition = data_total[1][0]
             test_item = data_total[0][0].split(" ")[0]
             chart_y_label = data_total[0][0]
-            num = 10
+            num = 7
             value_limit, lower_limit, upper_limit = None, None, None
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
                 value_limit = np.linspace(lower_limit, upper_limit, num=num)
-                
             elif data_total[0][2] == "<" or data_total[0][2] == "≦":
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.1
