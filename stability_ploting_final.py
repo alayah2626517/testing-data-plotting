@@ -79,7 +79,7 @@ def run_app():
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
-            value_limit = [f"{tick:.{decimal}f}" for tick in value_limit]
+            value_limit = (f"{tick:.{decimal}f}" for tick in value_limit)
             
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
