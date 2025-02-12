@@ -106,7 +106,7 @@ def run_app():
             ax.legend()
             ax.grid(True)
             plt.tight_layout()
-            plt.savefig(f"{folder_path}/{title}.png", dpi=300)
+            plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
         wb.close()
         if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
             root.quit()
