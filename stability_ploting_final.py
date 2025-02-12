@@ -54,6 +54,7 @@ def run_app():
             data_total = []
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
                 data_total.append(data)
+            print(data_total)
                 
             ### 定義各項變數
             condition = data_total[1][0]
