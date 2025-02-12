@@ -58,7 +58,8 @@ def run_app():
                 
             ### 定義各項變數
             condition = data_total[1][0]
-            test_item = data_total[0][0]
+            test_item = data_total[0][0].split(" ")[0]
+            chart_y_label = data_total[0][0]
             num = 10
             value_limit, lower_limit, upper_limit = None, None, None
             if data_total[0][2] == "±":
@@ -103,7 +104,7 @@ def run_app():
             ax.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
             
             ax.set_xlabel("Time point (months)")
-            ax.set_ylabel(test_item, fontsize=15)
+            ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
             ax.set_yticklabels([round(tick, 2) for tick in value_limit], fontsize=12)
             ax.grid(True, linestyle='--', alpha=0.6)
