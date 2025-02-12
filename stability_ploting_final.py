@@ -100,7 +100,8 @@ def run_app():
             
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(test_item, fontsize=15)
-            ax.set_yticks(value_limit, fontsize=12)
+            ax.set_yticks(value_limit)
+            ax.set_yticklabels(ax.get_yticks(), fontsize=12)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend()
             ax.grid(True)
