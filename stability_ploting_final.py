@@ -79,7 +79,7 @@ def run_app():
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
-            # value_limit = np.round(value_limit, decimal)
+            value_limit = [f"{tick:.{decimal}f}" for tick in value_limit]
             
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
@@ -99,7 +99,8 @@ def run_app():
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             
             ### 製作表格
-            data_rows = [[round(cell, decimal) for cell in row[1:]] for row in datasets]  # 每一行的數據
+            data_rows = [row[1:] for row in datasets]  # 每一行的數據
+            data_rows = [f"{value:.{decimal}f}" for value in data_rows]
             bbox_height = 0.3 + (batch_value * 0.02)
             bbox_y = -0.5 - (batch_value * 0.01)
             ax.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
@@ -107,7 +108,7 @@ def run_app():
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
-            ax.set_yticklabels([round(tick, decimal) for tick in value_limit], fontsize=12)
+            ax.set_yticklabels(fontsize=12)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='upper right', bbox_to_anchor=(1.05, 1), fontsize=12)
             ax.grid(True)
