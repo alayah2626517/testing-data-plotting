@@ -81,30 +81,29 @@ def run_app():
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
             x_axis = data_total[1][1:]
-            fig, ax = plt.subplots(2, 1, sharex='col', figsize=(10, 6))
+            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 6))
             # plt.figure(figsize=(10, 6))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = row[1:]  # 每一行的數據（跳過標籤）
-                x_axis = data_total[1][1:]
                 ax[0].plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
             # 在圖上設定規格上下限
             if lower_limit is not None:
-                ax[0].axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
+                ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
             if upper_limit is not None:
-                ax[0].axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
+                ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
             ax[0].set_title(chart_title, fontsize=18, fontweight='bold')
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
-            ax[0].table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0.1, -0.35, 0.8, 0.3])
+            ax.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0.1, -0.35, 0.8, 0.3])
             
-            ax[0].set_xlabel("Time point (months)")
-            ax[0].set_ylabel(test_item, fontsize=15)
-            ax[0].yticks(value_limit, fontsize=12)
-            ax[0].grid(True, linestyle='--', alpha=0.6)
-            ax[0].legend()
-            ax[0].grid(True)
+            ax.set_xlabel("Time point (months)")
+            ax.set_ylabel(test_item, fontsize=15)
+            ax.set_yticks(value_limit, fontsize=12)
+            ax.grid(True, linestyle='--', alpha=0.6)
+            ax.legend()
+            ax.grid(True)
             plt.tigh_layout
             plt.savefig(f"{folder_path}/{title}.png", dpi=300)
         wb.close()
