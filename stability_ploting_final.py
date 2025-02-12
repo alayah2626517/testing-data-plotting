@@ -54,7 +54,7 @@ def run_app():
             data_total = []
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
                 data_total.append(data)
-            print(data_total)
+            # print(data_total)
                 
             ### 定義各項變數
             condition = data_total[1][0]
@@ -77,6 +77,7 @@ def run_app():
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
             value_limit = [round(float(value), decimal) for value in value_limit]
+            print(value_limit)
             
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
