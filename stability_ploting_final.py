@@ -66,12 +66,12 @@ def run_app():
                 upper_limit = data_total[0][1]+data_total[0][3]
                 num = 7
                 value_limit = np.linspace(lower_limit, upper_limit, num=num)
-            elif data_total[0][2] == "<" or data_total[0][2] == "≦":
+            elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
                 num = 7
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit, num=num)
-            elif data_total[0][2] == ">" or data_total[0][2] == "≧":
+            elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
                 num = 10
@@ -79,7 +79,7 @@ def run_app():
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
-            value_limit = [f"{tick:.{decimal}f}" for tick in value_limit]
+            # value_limit = [f"{tick:.{decimal}f}" for tick in value_limit]
             
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
