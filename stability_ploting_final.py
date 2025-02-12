@@ -105,7 +105,7 @@ def run_app():
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend()
             ax.grid(True)
-            plt.tight_layout
+            plt.tight_layout()
             plt.savefig(f"{folder_path}/{title}.png", dpi=300)
         wb.close()
         if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
