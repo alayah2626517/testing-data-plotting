@@ -77,22 +77,22 @@ def run_app():
             decimal = len(str(value_limit[0]).split(".")[1])
             value_limit = [round(float(value), decimal) for value in value_limit]
             
-            ### 製圖
+            ### 製折線圖
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
             x_axis = data_total[1][1:]
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 6))
-            # plt.figure(figsize=(10, 6))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = row[1:]  # 每一行的數據（跳過標籤）
-                ax[0].plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
-            # 在圖上設定規格上下限
+                ax.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
+                
+            ### 在圖上設定規格上下限
             if lower_limit is not None:
                 ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
             if upper_limit is not None:
                 ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-            ax[0].set_title(chart_title, fontsize=18, fontweight='bold')
+            ax.set_title(chart_title, fontsize=18, fontweight='bold')
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
