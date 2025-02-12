@@ -100,7 +100,7 @@ def run_app():
             ax[0].table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0.1, -0.35, 0.8, 0.3])
             
             ax[0].set_xlabel("Time point (months)")
-            ax[0].ylabel(test_item, fontsize=15)
+            ax[0].set_ylabel(test_item, fontsize=15)
             ax[0].yticks(value_limit, fontsize=12)
             ax[0].grid(True, linestyle='--', alpha=0.6)
             ax[0].legend()
