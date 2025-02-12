@@ -89,8 +89,10 @@ def run_app():
                 x_axis = data_total[1][1:]
                 ax[0].plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
             # 在圖上設定規格上下限
-            ax[0].axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-            ax[0].axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
+            if lower_limit is not None:
+                ax[0].axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
+            if upper_limit is not None:
+                ax[0].axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
             ax[0].title(title, fontsize=18, fontweight='bold')
             
             ### 製作表格
