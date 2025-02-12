@@ -77,7 +77,7 @@ def run_app():
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
-            value_limit = np.round(value_limit, decimals=decimal)
+            value_limit = np.round(value_limit, decimal)
             
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
