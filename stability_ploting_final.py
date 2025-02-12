@@ -100,7 +100,7 @@ def run_app():
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
-            data_rows = [[f"{value:.{decimal}f}" for value in row] for row in data_rows]
+            data_rows = [[f"{value:.{decimal}f}" if value is not None else None for value in row] for row in data_rows]
             bbox_height = 0.3 + (batch_value * 0.02)
             bbox_y = -0.5 - (batch_value * 0.01)
             ax.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
