@@ -93,7 +93,7 @@ def run_app():
                 ax[0].axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
             if upper_limit is not None:
                 ax[0].axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-            ax[0].title(title, fontsize=18, fontweight='bold')
+            ax[0].set_title(title, fontsize=18, fontweight='bold')
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
