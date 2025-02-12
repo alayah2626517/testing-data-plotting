@@ -78,7 +78,7 @@ def run_app():
             value_limit = [round(float(value), decimal) for value in value_limit]
             
             ### 製圖
-            title = f"{condition}-{test_item}"
+            chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
             x_axis = data_total[1][1:]
             fig, ax = plt.subplots(2, 1, sharex='col', figsize=(10, 6))
@@ -93,7 +93,7 @@ def run_app():
                 ax[0].axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
             if upper_limit is not None:
                 ax[0].axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-            ax[0].set_title(title, fontsize=18, fontweight='bold')
+            ax[0].set_title(chart_title, fontsize=18, fontweight='bold')
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
