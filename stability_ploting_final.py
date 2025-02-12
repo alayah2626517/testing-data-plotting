@@ -77,30 +77,32 @@ def run_app():
             decimal = len(str(value_limit[0]).split(".")[1])
             value_limit = [round(float(value), decimal) for value in value_limit]
             
-            #製圖
+            ### 製圖
             title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
             x_axis = data_total[1][1:]
-            plt.figure(figsize=(10, 6))
+            fig, ax = plt.subplots(2, 1, sharex='col', figsize=(10, 6))
+            # plt.figure(figsize=(10, 6))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = row[1:]  # 每一行的數據（跳過標籤）
                 x_axis = data_total[1][1:]
-                plt.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
-            plt.axhline(y=lower_limit, color='dark red', linestyle='--', linewidth=1.5)
-            plt.axhline(y=upper_limit, color='dark red', linestyle='--', linewidth=1.5)
-            plt.title(title, fontsize=18, fontweight='bold')
+                ax[0].plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
+            # 在圖上設定規格上下限
+            ax[0].axhline(y=lower_limit, color='dark red', linestyle='--', linewidth=1.5)
+            ax[0].axhline(y=upper_limit, color='dark red', linestyle='--', linewidth=1.5)
+            ax[0].title(title, fontsize=18, fontweight='bold')
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
-            plt.table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0.1, -0.35, 0.8, 0.3])
+            ax[0].table(cellText=data_rows, colLabels=x_axis, loc='bottom', cellLoc='center', colLoc='center', bbox=[0.1, -0.35, 0.8, 0.3])
             
-            plt.xlabel("Time point (months)")
-            plt.ylabel(test_item, fontsize=15)
-            plt.yticks(value_limit, fontsize=12)
-            plt.grid(True, linestyle='--', alpha=0.6)
-            plt.legend()
-            plt.grid(True)
+            ax[0].set_xlabel("Time point (months)")
+            ax[0].ylabel(test_item, fontsize=15)
+            ax[0].yticks(value_limit, fontsize=12)
+            ax[0].grid(True, linestyle='--', alpha=0.6)
+            ax[0].legend()
+            ax[0].grid(True)
             plt.savefig(f"{folder_path}/{title}.png", dpi=300)
         wb.close()
         if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
