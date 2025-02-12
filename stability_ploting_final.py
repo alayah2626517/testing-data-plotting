@@ -110,7 +110,7 @@ def run_app():
             ax.set_yticks(value_limit)
             ax.set_yticklabels(fontsize=12)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='upper right', bbox_to_anchor=(1.05, 1), fontsize=12)
+            ax.legend(loc='upper right', bbox_to_anchor=(1.25, 1), fontsize=12)
             ax.grid(True)
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
