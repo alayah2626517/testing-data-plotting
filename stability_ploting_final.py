@@ -64,18 +64,18 @@ def run_app():
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
-                num = 7
-                value_limit = np.linspace(lower_limit, upper_limit, num=num)
+                # num = 7, num=num
+                value_limit = np.linspace(lower_limit, upper_limit)
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
-                num = 10
-                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit, num=num)
+                # num = 10, num=num
+                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
-                num = 6
-                value_limit = np.linspace(lower_limit, lower_limit+distance*(num-1), num=num)
+                # num = 6, num=num
+                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1))
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
@@ -85,7 +85,7 @@ def run_app():
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
             x_axis = data_total[1][1:]
-            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 5))
+            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 6))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = row[1:]  # 每一行的數據（跳過標籤）
@@ -110,7 +110,7 @@ def run_app():
             ax.set_yticks(value_limit)
             ax.set_yticklabels([f"{value:.1f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='upper right', bbox_to_anchor=(1.25, 1), fontsize=12)
+            ax.legend(loc='upper right', bbox_to_anchor=(-5, -5), fontsize=10)
             ax.grid(True)
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
