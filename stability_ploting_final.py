@@ -64,17 +64,17 @@ def run_app():
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
-                # num = 7, num=num
+                # num = 7
                 value_limit = np.linspace(lower_limit, upper_limit)
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
-                # num = 10, num=num
+                num = 10
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
-                # num = 6, num=num
+                num = 6
                 value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1))
             else:
                 print("Report data")
