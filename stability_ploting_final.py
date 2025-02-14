@@ -69,7 +69,7 @@ def run_app():
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
-                num = 10
+                num = 12
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.2, nums=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
