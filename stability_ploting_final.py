@@ -65,17 +65,17 @@ def run_app():
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
                 num = 7
-                value_limit = np.linspace(lower_limit, upper_limit, nums=num)
+                value_limit = np.linspace(lower_limit, upper_limit, num=num)
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
                 num = 12
-                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.2, nums=num)
+                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.2, num=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
                 num = 6
-                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), nums=num)
+                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
