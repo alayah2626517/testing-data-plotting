@@ -64,18 +64,18 @@ def run_app():
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
-                # num = 7
-                value_limit = np.linspace(lower_limit, upper_limit)
+                num = 7
+                value_limit = np.linspace(lower_limit, upper_limit, nums=num)
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
                 num = 10
-                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit)
+                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.2, nums=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
                 num = 6
-                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1))
+                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), nums=num)
             else:
                 print("Report data")
             decimal = len(str(value_limit[0]).split(".")[1])
@@ -110,7 +110,7 @@ def run_app():
             ax.set_yticks(value_limit)
             ax.set_yticklabels([f"{value:.1f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='upper right', bbox_to_anchor=(-5, -5), fontsize=10)
+            ax.legend(loc='upper right', bbox_to_anchor=(-1, -1), fontsize=10)
             ax.grid(True)
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
