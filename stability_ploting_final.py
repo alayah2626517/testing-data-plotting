@@ -69,12 +69,12 @@ def run_app():
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
-                num = 12
-                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.2, num=num)
+                num = 15
+                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.08, num=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
-                num = 6
+                num = 4
                 value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
@@ -110,7 +110,7 @@ def run_app():
             ax.set_yticks(value_limit)
             ax.set_yticklabels([f"{value:.1f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='upper right', bbox_to_anchor=(-0.1, 0), fontsize=10)
+            ax.legend(loc='upper right', bbox_to_anchor=(-0.08, 0), fontsize=10)
             ax.grid(True)
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
