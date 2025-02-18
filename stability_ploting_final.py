@@ -68,7 +68,7 @@ def run_app():
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
-                num = 15
+                num = 10
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.08, num=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
@@ -85,9 +85,6 @@ def run_app():
                     return 0
                 return 0
                 
-            
-
-            
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
@@ -133,7 +130,8 @@ def run_app():
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
-            ax.set_yticklabels([f"{value:.{max_decimal}f}" for value in value_limit], fontsize=13)
+            ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
+            # ax.set_yticklabels([f"{value:.{max_decimal}f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
             ax.grid(True)
