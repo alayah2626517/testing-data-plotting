@@ -118,12 +118,12 @@ def run_app():
             table = ax.table(cellText=data_rows_labels, colLabels=['Lot'] + list(x_axis), loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
             table.auto_set_font_size(False)
             for (i, j), cell in table.get_celld().items():
-                if i == 0:  # 行標籤
-                    cell.set_fontsize(13)  # 設置行標籤的字體大小
-                elif i > 0 and j > 0:
+                if j == 0:
+                    cell.set_fontsize(13)
+                elif i > 0 and j == 0:
                     cell.set_fontsize(8)
-                else:  # 數據部分
-                    cell.set_fontsize(10)  # 設置數據部分的字體大小
+                else:
+                    cell.set_fontsize(10)
             
             ### 整個表設計
             ax.set_xlabel("Time point (months)")
