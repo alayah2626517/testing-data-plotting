@@ -7,7 +7,7 @@ from tkinter import filedialog, messagebox
 from tkinter.constants import *
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-from decimal import Decimal, ROUND_HALF_UP
+# from decimal import Decimal, ROUND_HALF_UP
 from openpyxl import load_workbook
 import numpy as np
 import os
@@ -76,7 +76,7 @@ def run_app():
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
                 num = 7
-                value_limit = np.linspace(lower_limit*0., lower_limit+distance*(num-1), num=num)
+                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
             
@@ -110,7 +110,6 @@ def run_app():
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             
             ### 製作表格
-
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
             data_rows = [[f"{value:.{max_decimal}f}" if value is not None else None for value in row] for row in data_rows]
             bbox_height = 0.3 + (batch_value * 0.02)
@@ -131,8 +130,8 @@ def run_app():
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
-            ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
-            # ax.set_yticklabels([f"{value:.{max_decimal}f}" for value in value_limit], fontsize=13)
+            # ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
+            ax.set_yticklabels(fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
             ax.grid(True)
