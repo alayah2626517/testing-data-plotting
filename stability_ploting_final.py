@@ -131,7 +131,7 @@ def run_app():
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
             # ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
-            ax.set_yticklabels(fontsize=13)
+            # ax.set_yticklabels(fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
             ax.grid(True)
