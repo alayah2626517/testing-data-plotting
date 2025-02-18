@@ -73,9 +73,9 @@ def run_app():
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.08, num=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
-                distance = lower_limit*0.055
-                num = 5
-                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), num=num)
+                distance = lower_limit*0.05
+                num = 6
+                value_limit = np.linspace(lower_limit*0.7, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
             
@@ -94,7 +94,7 @@ def run_app():
                     if value is not None:
                         decimal = max(min_decimal, get_decimal(value))
             x_axis = data_total[1][1:]
-            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 6))
+            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = row[1:]  # 每一行的數據（跳過標籤）
@@ -115,11 +115,13 @@ def run_app():
             bbox_y = -0.5 - (batch_value * 0.01)
             data_labels = [row[0] for row in datasets]  # 提取批次label
             data_rows_labels = [[data_labels[i]] + data_rows[i] for i in range(len(data_rows))]
-            table = ax.table(cellText=data_rows_labels, colLabels=['Batch'] + list(x_axis), loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
+            table = ax.table(cellText=data_rows_labels, colLabels=['Lot'] + list(x_axis), loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
             table.auto_set_font_size(False)
             for (i, j), cell in table.get_celld().items():
                 if i == 0:  # 行標籤
                     cell.set_fontsize(13)  # 設置行標籤的字體大小
+                elif i > 0 and j > 0:
+                    cell.set_fontsize(8)
                 else:  # 數據部分
                     cell.set_fontsize(10)  # 設置數據部分的字體大小
             
@@ -129,7 +131,7 @@ def run_app():
             ax.set_yticks(value_limit)
             ax.set_yticklabels([f"{value:.{decimal}f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='lower left', bbox_to_anchor=(-0.25, -0.5), fontsize=10)
+            ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
             ax.grid(True)
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
