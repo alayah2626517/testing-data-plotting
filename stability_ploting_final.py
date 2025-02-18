@@ -81,7 +81,7 @@ def run_app():
             # decimal = len(str(value_limit[0]).split(".")[1])     
             def get_decimal(value):
                 if isinstance(value, float):
-                    reture len(str(value_limit[0]).split(".")[1]) if '.' in str(value) else 0
+                    return len(str(value_limit[0]).split(".")[1]) if '.' in str(value) else 0
                 return 0
 
             
