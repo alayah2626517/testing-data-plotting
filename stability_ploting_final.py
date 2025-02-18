@@ -133,8 +133,8 @@ def run_app():
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
             ax.grid(True)
-            plt.subplots_adjust(bottom=0.1)  # 調整底部的間距
-            plt.tight_layout()
+            plt.subplots_adjust(bottom=0.2)  # 調整底部的間距
+            plt.tight_layout(pad=1.0)
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
         wb.close()
         if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
