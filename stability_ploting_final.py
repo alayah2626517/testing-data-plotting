@@ -18,7 +18,7 @@ def run_app():
     root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
-    ## 輸入框: Batch
+    ## 輸入Batch
     label_frame = tk.LabelFrame(root, width=380, height=100, text="Step 1", bg="light blue", bd=10, relief='groove')
     label_frame.pack(padx=10, pady=5, fill="x")
     label_frame.pack_propagate(False)
@@ -90,11 +90,11 @@ def run_app():
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
-            min_decimal = 0
+            max_decimal = 0
             for row in datasets:
                 for value in row[1:]:
                     if value is not None:
-                        decimal = max(min_decimal, get_decimal(value))
+                        max_decimal = max(max_decimal, get_decimal(value))
             x_axis = data_total[1][1:]
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
