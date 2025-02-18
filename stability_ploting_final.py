@@ -92,7 +92,7 @@ def run_app():
             for row in datasets:
                 for value in row[1:]:
                     if value is not None:
-                        decimal = max(min_decimal, get_decimal)
+                        decimal = max(min_decimal, get_decimal(value))
             x_axis = data_total[1][1:]
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 6))
             for row in datasets:
