@@ -118,9 +118,9 @@ def run_app():
             table = ax.table(cellText=data_rows_labels, colLabels=['Lot'] + list(x_axis), loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
             table.auto_set_font_size(False)
             for (i, j), cell in table.get_celld().items():
-                if j == 0:
-                    cell.set_fontsize(13)
-                elif i > 0 and j == 0:
+                if i == 0:
+                    cell.set_fontsize(11)
+                elif j == 0:
                     cell.set_fontsize(8)
                 else:
                     cell.set_fontsize(10)
