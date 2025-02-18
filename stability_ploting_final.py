@@ -100,7 +100,8 @@ def run_app():
             
             ### 製作表格
             spec = data_total[0][4]
-            data_rows = [row[1:] for row in datasets]  # 每一行的數據
+            # batch_labels = [row[0] for row in datasets]  # 提取批次label
+            data_rows = [row for row in datasets]  # 每一行的數據
             data_rows = [[f"{value:.{decimal}f}" if value is not None else None for value in row] for row in data_rows]
             bbox_height = 0.3 + (batch_value * 0.02)
             bbox_y = -0.5 - (batch_value * 0.01)
@@ -111,9 +112,9 @@ def run_app():
             ax.set_yticks(value_limit)
             ax.set_yticklabels([f"{value:.1f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='lower left', bbox_to_anchor=(-0.2, -0.1), fontsize=10)
+            ax.legend(loc='lower left', bbox_to_anchor=(-0.2, -0.3), fontsize=10)
             ax.grid(True)
-            fig.text(-0.1, -0.1, f'{spec}', ha='center', va='center', fontsize=10)
+            fig.text(-0.1, 0, f'{spec}', ha='center', va='center', fontsize=10)
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
         wb.close()
