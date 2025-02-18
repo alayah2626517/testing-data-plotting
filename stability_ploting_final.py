@@ -76,7 +76,7 @@ def run_app():
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
                 num = 7
-                value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), num=num)
+                value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
             
@@ -130,11 +130,10 @@ def run_app():
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
-            # ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
-            # ax.set_yticklabels(fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
             ax.grid(True)
+            plt.subplots_adjust(bottom=0.1)  # 調整底部的間距
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
         wb.close()
