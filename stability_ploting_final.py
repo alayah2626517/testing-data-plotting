@@ -73,12 +73,12 @@ def run_app():
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.08, num=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
-                distance = lower_limit*0.05
-                num = 4
+                distance = lower_limit*0.055
+                num = 5
                 value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
-            # decimal = len(str(value_limit[0]).split(".")[1])     
+            
             def get_decimal(value):
                 if isinstance(value, float):
                     return len(str(value_limit[0]).split(".")[1]) if '.' in str(value) else 0
@@ -115,16 +115,21 @@ def run_app():
             bbox_y = -0.5 - (batch_value * 0.01)
             data_labels = [row[0] for row in datasets]  # 提取批次label
             data_rows_labels = [[data_labels[i]] + data_rows[i] for i in range(len(data_rows))]
-            ax.table(cellText=data_rows_labels, colLabels=['Batch'] + list(x_axis), loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
-
-            ### 整個表設計
+            table = ax.table(cellText=data_rows_labels, colLabels=['Batch'] + list(x_axis), loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
+            table.auto_set_font_size(False)
+            for (i, j), cell in table.get_celld().items():
+                if i == 0:  # 行標籤
+                    cell.set_fontsize(13)  # 設置行標籤的字體大小
+                else:  # 數據部分
+                    cell.set_fontsize(10)  # 設置數據部分的字體大小
             
+            ### 整個表設計
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
             ax.set_yticklabels([f"{value:.{decimal}f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='lower left', bbox_to_anchor=(-0.2, -0.5), fontsize=10)
+            ax.legend(loc='lower left', bbox_to_anchor=(-0.25, -0.5), fontsize=10)
             ax.grid(True)
             plt.tight_layout()
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
