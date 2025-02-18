@@ -80,8 +80,10 @@ def run_app():
                 print("Report data")
             
             def get_decimal(value):
-                if isinstance(value, float):
-                    return len(str(value_limit[0]).split(".")[1]) if '.' in str(value) else 0
+                if isinstance(value, (int, float)):
+                    if '.' in str(value):
+                        return len(str(value_limit[0]).split(".")[1])
+                    return 0
                 return 0
 
             
