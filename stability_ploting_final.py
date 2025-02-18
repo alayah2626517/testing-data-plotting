@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter.constants import *
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 from openpyxl import load_workbook
 import numpy as np
 import os
