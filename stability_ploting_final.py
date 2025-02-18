@@ -55,7 +55,7 @@ def run_app():
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
                 data_total.append(data)
             # print(data_total)
-                
+
             ### 定義各項變數
             condition = data_total[1][0]
             test_item = data_total[0][0].split(" ")[0]
@@ -78,12 +78,21 @@ def run_app():
                 value_limit = np.linspace(lower_limit*0.8, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
-            decimal = len(str(value_limit[0]).split(".")[1])
-            # value_limit = [f"{tick:.{decimal}f}" for tick in value_limit]
+            # decimal = len(str(value_limit[0]).split(".")[1])     
+            def get_decimal(value):
+                if isinstance(value, float):
+                    reture len(str(value_limit[0]).split(".")[1]) if '.' in str(value) else 0
+                return 0
+
             
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
+            min_decimal = 0
+            for row in datasets:
+                for value in row[1:]:
+                    if value is not None:
+                        decimal = max(min_decimal, get_decimal)
             x_axis = data_total[1][1:]
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 6))
             for row in datasets:
@@ -99,6 +108,7 @@ def run_app():
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             
             ### 製作表格
+
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
             data_rows = [[f"{value:.{decimal}f}" if value is not None else None for value in row] for row in data_rows]
             bbox_height = 0.3 + (batch_value * 0.02)
@@ -106,11 +116,13 @@ def run_app():
             data_labels = [row[0] for row in datasets]  # 提取批次label
             data_rows_labels = [[data_labels[i]] + data_rows[i] for i in range(len(data_rows))]
             ax.table(cellText=data_rows_labels, colLabels=['Batch'] + list(x_axis), loc='bottom', cellLoc='center', colLoc='center', bbox=[0, bbox_y, 1, bbox_height])
+
+            ### 整個表設計
             
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
-            ax.set_yticklabels([f"{value:.1f}" for value in value_limit], fontsize=13)
+            ax.set_yticklabels([f"{value:.{decimal}f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.2, -0.5), fontsize=10)
             ax.grid(True)
