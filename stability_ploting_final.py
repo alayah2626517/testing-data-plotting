@@ -7,6 +7,7 @@ from tkinter import filedialog, messagebox
 from tkinter.constants import *
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+from decimal import Decimal, ROUND_HALF_UP
 from openpyxl import load_workbook
 import numpy as np
 import os
@@ -74,26 +75,25 @@ def run_app():
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
-                num = 4
-                value_limit = np.linspace(lower_limit*0.7, lower_limit+distance*(num-1), num=num)
+                num = 7
+                value_limit = np.linspace(lower_limit*0., lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
             
             def get_decimal(value):
                 if isinstance(value, (int, float)):
                     if '.' in str(value):
-                        return len(str(value_limit[0]).split(".")[1])
+                        return len(str(value).split(".")[1])
                     return 0
                 return 0
                 
             ### 製折線圖
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
-            max_decimal = 0
             for row in datasets:
                 for value in row[1:]:
                     if value is not None:
-                        max_decimal = max(max_decimal, get_decimal(value))
+                        max_decimal = get_decimal(value)
             value_limit = [round(value, max_decimal) for value in value_limit]
             x_axis = data_total[1][1:]
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
