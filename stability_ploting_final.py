@@ -69,12 +69,12 @@ def run_app():
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
-                num = 10
+                num = 15
                 value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.08, num=num)
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
-                num = 6
+                num = 4
                 value_limit = np.linspace(lower_limit*0.7, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
