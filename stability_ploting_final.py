@@ -52,9 +52,8 @@ def run_app():
         for sheet in sheet_name:
             sheet = wb[sheet]
             data_total = []
-            for data in sheet.iter_rows(min_row=1, max_row=batch_value+1, min_col=1, max_col=10, values_only=True):
+            for data in sheet.iter_rows(min_row=1, max_row=batch_value+2, min_col=1, max_col=10, values_only=True):
                 data_total.append(data)
-            # print(data_total)
 
             ### 定義各項變數
             condition = data_total[1][0]
@@ -85,6 +84,8 @@ def run_app():
                         return len(str(value_limit[0]).split(".")[1])
                     return 0
                 return 0
+                
+            
 
             
             ### 製折線圖
@@ -95,6 +96,7 @@ def run_app():
                 for value in row[1:]:
                     if value is not None:
                         max_decimal = max(max_decimal, get_decimal(value))
+            value_limit = [round(value, max_decimal) for value in value_limit]
             x_axis = data_total[1][1:]
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
@@ -112,7 +114,7 @@ def run_app():
             ### 製作表格
 
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
-            data_rows = [[f"{value:.{decimal}f}" if value is not None else None for value in row] for row in data_rows]
+            data_rows = [[f"{value:.{max_decimal}f}" if value is not None else None for value in row] for row in data_rows]
             bbox_height = 0.3 + (batch_value * 0.02)
             bbox_y = -0.5 - (batch_value * 0.01)
             data_labels = [row[0] for row in datasets]  # 提取批次label
@@ -131,7 +133,7 @@ def run_app():
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
-            ax.set_yticklabels([f"{value:.{decimal}f}" for value in value_limit], fontsize=13)
+            ax.set_yticklabels([f"{value:.{max_decimal}f}" for value in value_limit], fontsize=13)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
             ax.grid(True)
