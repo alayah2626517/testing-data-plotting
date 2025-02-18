@@ -123,7 +123,7 @@ def run_app():
                 if i == 0:
                     cell.set_fontsize(11)
                 elif j == 0:
-                    cell.set_fontsize(8)
+                    cell.set_fontsize(6)
                 else:
                     cell.set_fontsize(10)
             
