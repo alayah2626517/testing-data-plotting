@@ -38,10 +38,14 @@ def run_app():
             print(f"Successfully selecting: {file_path}")
     label_frame_2 = tk.LabelFrame(root, width=380, height=100, text="Step 2", bg="DarkOliveGreen2", bd=10, relief='groove')
     label_frame_2.pack(padx=10, pady=5, fill="x")
-    tk.Label(label_frame_2, text="Select the file: ", font=('Arial', 10), bg="DarkOliveGreen2").grid(row=0, column=0, padx=66, pady=5)
-    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 11, 'bold'), bg="DarkOliveGreen2").grid(row=1, column=0, padx=66, pady=5)
+    
+    label_frame_2.grid_columnconfigure(0, weight=0)  # 第 1 列不會拉伸
+    label_frame_2.grid_columnconfigure(1, weight=1)  # 第 2 列會根據容器大小拉伸
+    label_frame_2.grid_columnconfigure(2, weight=0)  # 第 3 列不會拉伸    
+    tk.Label(label_frame_2, text="Select the file: ", font=('Arial', 10), bg="DarkOliveGreen2").grid(row=0, column=0, column=1, padx=66, pady=5)
+    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 11, 'bold'), bg="DarkOliveGreen2").grid(row=1, column=0, column=0, columnspan=3, padx=66, pady=5, sticky="ew")
+    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=2, column=1, padx=45, pady=15)
     file_path = None
-    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=2, column=0, padx=45, pady=15)
     
      ## 文件導入
     def load_sheet():
