@@ -102,7 +102,7 @@ def run_app():
                         max_decimal = get_decimal(value)
             value_limit = [round(value, max_decimal) for value in value_limit]
             x_axis = data_total[1][1:]
-            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 6))
+            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = row[1:]  # 每一行的數據（跳過標籤）
@@ -141,7 +141,7 @@ def run_app():
             ax.grid(True)
             plt.subplots_adjust(bottom=0.2)  # 調整底部的間距
             ax.margins(x=0.2, y=0.5)
-            plt.tight_layout(pad=2.0)
+            plt.tight_layout(pad=1.0)
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
         wb.close()
         if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
