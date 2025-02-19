@@ -1,6 +1,6 @@
 #### Purpose: This script is for plotting testing data from excel, beware of the layout of data.
 #### Author: Hsin-Yun Hung
-#### Inition version: 2025/02/07
+#### Inition version: 2025/02/19
 
 import tkinter as tk
 from tkinter import filedialog, messagebox
