@@ -60,9 +60,10 @@ def run_app():
             ### 定義各項變數
             condition = data_total[1][0]
             test_item = data_total[0][0].split("(")[0]
+            
             ## 找單位
             unit_ori = data_total[0][0].split("(")[1]
-            end_idx = text.find(')')
+            end_idx = unit_ori.find(')')
             if end_idx != -1:
                 chart_y_label = unit_ori[:end_idx]
                 
