@@ -59,8 +59,13 @@ def run_app():
 
             ### 定義各項變數
             condition = data_total[1][0]
-            test_item = data_total[0][0].split(" ")[0]
-            chart_y_label = data_total[0][0]
+            test_item = data_total[0][0].split("(")[0]
+            ## 找單位
+            unit_ori = data_total[0][0].split("(")[1]
+            end_idx = text.find(')')
+            if end_idx != -1:
+                chart_y_label = unit_ori[:end_idx]
+                
             value_limit, lower_limit, upper_limit = None, None, None
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
@@ -131,9 +136,10 @@ def run_app():
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.5), fontsize=10)
+            ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
             ax.grid(True)
             plt.subplots_adjust(bottom=0.2)  # 調整底部的間距
+            ax.margins(x=0.05, y=0.2)
             plt.tight_layout(pad=1.0)
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
         wb.close()
