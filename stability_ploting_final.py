@@ -15,7 +15,7 @@ def run_app():
     ## 建立窗口
     root = tk.Tk()
     root.title("Test results plotting tool")
-    root.geometry('380x410')
+    root.geometry('380x420')
     root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
