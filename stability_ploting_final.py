@@ -156,7 +156,7 @@ def run_app():
     label_frame_3.grid_columnconfigure(1, weight=1)
     label_frame_3.grid_columnconfigure(2, weight=1)
     tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=1, padx=55, pady=10, sticky="ew")
-    tk.Label(label_frame_3, text="Selecting folder after clicking the loading button.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, columnspan=3, padx=6, pady=10, sticky="ew")
+    tk.Label(label_frame_3, text="Select a folder after clicking the loading button.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, columnspan=3, padx=6, pady=10, sticky="ew")
 
     
     root.mainloop()
