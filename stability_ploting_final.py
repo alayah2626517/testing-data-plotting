@@ -43,7 +43,7 @@ def run_app():
     label_frame_2.grid_columnconfigure(1, weight=1)  # 第 2 列會根據容器大小拉伸
     label_frame_2.grid_columnconfigure(2, weight=0)  # 第 3 列不會拉伸    
     tk.Label(label_frame_2, text="Select the file: ", font=('Arial', 10), bg="DarkOliveGreen2").grid(row=0, column=1, padx=66, pady=5, sticky="ew")
-    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 11, 'bold'), bg="DarkOliveGreen2").grid(row=1, column=0, column=0, columnspan=3, padx=66, pady=5, sticky="ew")
+    tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 11, 'bold'), bg="DarkOliveGreen2").grid(row=1, column=0, columnspan=3, padx=66, pady=5, sticky="ew")
     tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=2, column=1, padx=45, pady=15)
     file_path = None
     
