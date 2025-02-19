@@ -19,7 +19,7 @@ def run_app():
     root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
-    ## 輸入Batch
+    ## 輸入批次數量
     label_frame = tk.LabelFrame(root, width=380, height=100, text="Step 1", bg="light blue", bd=10, relief='groove')
     label_frame.pack(padx=10, pady=5, fill="x")
     label_frame.pack_propagate(False)
@@ -28,7 +28,7 @@ def run_app():
     batch_entry = tk.Spinbox(label_frame, from_=1, to=100, textvariable=batch_num, font=("Arial", 12))
     batch_entry.grid(row=1, column=0, padx=70, pady=15)
 
-    ## 文件選擇按鈕
+    ## 文件選擇
     def select_file():
         global file_path
         file_path = filedialog.askopenfilename(title="Select file", filetypes=[("All Files", "*.*")])
@@ -43,7 +43,7 @@ def run_app():
     file_path = None
     tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=2, column=0, padx=45, pady=15)
     
-     ## 文件導入按鈕
+     ## 文件導入
     def load_sheet():
         global file_path
         batch_value = batch_num.get()
@@ -57,7 +57,7 @@ def run_app():
             for data in sheet.iter_rows(min_row=1, max_row=batch_value+2, min_col=1, max_col=10, values_only=True):
                 data_total.append(data)
 
-            ### 定義各項變數
+            ### 定義變數
             condition = data_total[1][0]
             test_item = data_total[0][0].split("(")[0]
             
@@ -85,7 +85,7 @@ def run_app():
                 value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
                 print("Report data")
-            
+            ## 訂出小數位數
             def get_decimal(value):
                 if isinstance(value, (int, float)):
                     if '.' in str(value):
@@ -93,7 +93,7 @@ def run_app():
                     return 0
                 return 0
                 
-            ### 製折線圖
+            ### 製作折線圖
             chart_title = f"{condition}-{test_item}"
             datasets = data_total[2:]  # 數據本身
             for row in datasets:
