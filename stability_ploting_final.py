@@ -151,7 +151,7 @@ def run_app():
     label_frame_3.grid_columnconfigure(0, weight=1)
     label_frame_3.grid_columnconfigure(1, weight=1)
     label_frame_3.grid_columnconfigure(2, weight=1)
-    tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=0, columnspan=3, padx=55, pady=10, sticky="ew")
+    tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=1, padx=55, pady=10, sticky="ew")
     tk.Label(label_frame_3, text="Selecting folder to save chart after loading the file.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, columnspan=3, padx=6, pady=10, sticky="ew")
 
     
