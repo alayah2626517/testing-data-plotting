@@ -151,7 +151,7 @@ def run_app():
                 ax.set_yticks(value_limit)
             else:
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
-                all_values = [round(value, max_decimal) for value in all_values]
+                all_values = [round(value, max_decimal) for value in all_values if isinstance(value, (int, float))]
                 print(all_values)
                 min_value = min(all_values)
                 max_value = max(all_values)
