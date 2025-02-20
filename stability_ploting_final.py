@@ -89,7 +89,7 @@ def run_app():
                 value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
-                if all_value:
+                if all_values:
                     min_value = min(all_values)
                     max_value = max(all_values)                    
                     value_limit_none = np.linspace(min_value, max_value, num=15)
