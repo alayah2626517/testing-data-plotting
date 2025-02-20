@@ -94,7 +94,7 @@ def run_app():
                 lower_limit = min(all_values)
                 upper_limit = max(all_values)
                 num = 7
-                value_limit = np.linspace(lower_limit*0.9, upper_limit1.09, num=num)
+                value_limit = np.linspace(lower_limit*0.9, upper_limit*1.09, num=num)
                 
             ## 訂出小數位數
             def get_decimal(value):
