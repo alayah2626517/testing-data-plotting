@@ -88,7 +88,8 @@ def run_app():
                 num = 7
                 value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
-                print("Report data")
+                value_limit = []
+                
             ## 訂出小數位數
             def get_decimal(value):
                 if isinstance(value, (int, float)):
