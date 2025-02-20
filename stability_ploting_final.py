@@ -44,7 +44,7 @@ def run_app():
     label_frame_2.grid_columnconfigure(2, weight=0)  # 第 3 列不會拉伸    
     tk.Label(label_frame_2, text="Select the file: ", font=('Arial', 10), bg="DarkOliveGreen2").grid(row=0, column=1, padx=66, pady=5, sticky="ew")
     tk.Label(label_frame_2, text="Beware of the datasets layout!", font=('Arial', 11, 'bold'), bg="DarkOliveGreen2").grid(row=1, column=0, columnspan=3, padx=66, pady=5, sticky="ew")
-    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=2, column=1, padx=45, pady=15, sticky="ew")
+    tk.Button(label_frame_2, text="Select file", command=select_file).grid(row=2, column=1, padx=55, pady=10, sticky="n")
     file_path = None
     
      ## 文件導入
@@ -156,7 +156,7 @@ def run_app():
     label_frame_3.grid_columnconfigure(0, weight=1)
     label_frame_3.grid_columnconfigure(1, weight=1)
     label_frame_3.grid_columnconfigure(2, weight=1)
-    tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=1, padx=55, pady=10, sticky="ew")
+    tk.Button(label_frame_3, text="Load file", command=load_sheet).grid(row=0, column=1, padx=55, pady=10, sticky="n")
     tk.Label(label_frame_3, text="Select a folder after clicking the loading button.", font=('Arial', 11), bg="khaki1").grid(row=1, column=0, columnspan=3, padx=6, pady=10, sticky="ew")
 
     
