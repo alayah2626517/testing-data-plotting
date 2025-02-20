@@ -148,16 +148,17 @@ def run_app():
             
             ### 整個表設計
             chart_title = f"{condition}-{test_item}"
-            value_limit = [round(value, max_decimal) for value in value_limit]
-            if value_limit_none:
-                value_limit_none = [round(value, max_decimal) for value in value_limit_none]
+            if value_limit:
+                value_limit = [round(value, max_decimal) for value in value_limit]        
+            else:
+                value_limit_none = [round(value, max_decimal) for value in value_limit_none]  
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
-            if value_limit == []:
-                ax.set_yticks(value_limit_none)
-            else:
+            if value_limit:
                 ax.set_yticks(value_limit)
+            else:
+                ax.set_yticks(value_limit_none)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
             ax.grid(True)
