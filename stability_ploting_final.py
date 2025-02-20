@@ -71,7 +71,7 @@ def run_app():
             if end_idx != -1:
                 chart_y_label = unit_ori[:end_idx]
                 
-            value_limit, lower_limit, upper_limit = None, None, None
+            value_limit, value_limit_none, lower_limit, upper_limit = None, None, None, None
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
