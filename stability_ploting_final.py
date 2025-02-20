@@ -91,7 +91,7 @@ def run_app():
                 ax.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
 
             ##定義y軸上下限
-            value_limit, value_limit_none, lower_limit, upper_limit = None, None None, None
+            value_limit, value_limit_none, lower_limit, upper_limit = None, None, None, None
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
