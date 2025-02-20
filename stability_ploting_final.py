@@ -64,6 +64,8 @@ def run_app():
             ### 定義變數
             condition = data_total[1][0]
             test_item = data_total[0][0].split("(")[0]
+            datasets = data_total[2:]  # 數據本身
+            x_axis = data_total[1][1:]  # time point
             
             ## 找單位
             unit_ori = data_total[0][0].split("(")[1]
@@ -88,7 +90,11 @@ def run_app():
                 num = 7
                 value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
-                value_limit = []
+                all_values = [value for row in datasets for value in row[1:] if value is not None]
+                lower_limit = min(all_values)
+                upper_limit = max(all_values)
+                num = 7
+                value_limit = np.linspace(lower_limit*0.9, upper_limit1.09, num=num)
                 
             ## 訂出小數位數
             def get_decimal(value):
@@ -100,13 +106,13 @@ def run_app():
                 
             ### 製作折線圖
             chart_title = f"{condition}-{test_item}"
-            datasets = data_total[2:]  # 數據本身
+            
             for row in datasets:
                 for value in row[1:]:
                     if value is not None:
                         max_decimal = get_decimal(value)
             value_limit = [round(value, max_decimal) for value in value_limit]
-            x_axis = data_total[1][1:]
+
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
@@ -118,7 +124,6 @@ def run_app():
                 ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
             if upper_limit is not None:
                 ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-            ax.set_title(chart_title, fontsize=18, fontweight='bold')
             
             ### 製作表格
             data_rows = [row[1:] for row in datasets]  # 每一行的數據
@@ -138,6 +143,7 @@ def run_app():
                     cell.set_fontsize(10)
             
             ### 整個表設計
+            ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.set_yticks(value_limit)
@@ -147,6 +153,7 @@ def run_app():
             plt.subplots_adjust(bottom=0.2)  # 調整底部的間距
             plt.tight_layout(pad=1.0)
             plt.savefig(f"{folder_path}/{chart_title}.png", dpi=300)
+        
         wb.close()
         if messagebox.askyesno("Plotting complete", "All charts have been successfully created. Do you want to exit?"):
             root.quit()
