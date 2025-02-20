@@ -150,7 +150,7 @@ def run_app():
             
             ### 整個表設計
             chart_title = f"{condition}-{test_item}"
-            if all(value_limit):
+            if value_limit and all(value_limit):
                 value_limit = [round(value, max_decimal) for value in value_limit]       
                 print(value_limit)
             else:
