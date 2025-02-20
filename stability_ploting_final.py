@@ -17,10 +17,12 @@ def run_app():
     root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
    
-    ## 輸入批次數量
+    ## 訂出介面
     label_frame = tk.LabelFrame(root, width=380, height=100, text="Step 1", bg="light blue", bd=10, relief='groove')
     label_frame.pack(padx=10, pady=5, fill="x")
     label_frame.pack_propagate(False)
+    
+    ## 輸入批次數量
     tk.Label(label_frame, text="Maximum # of Batch ?", font=('Arial', 13), bg="light blue").grid(row=0, column=0, padx=60, pady=10)
     batch_num = tk.StringVar()
     batch_entry = tk.Spinbox(label_frame, from_=1, to=100, textvariable=batch_num, font=("Arial", 12))
