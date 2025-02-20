@@ -71,7 +71,7 @@ def run_app():
             if end_idx != -1:
                 chart_y_label = unit_ori[:end_idx]
                 
-            value_limit, value_limit_none, lower_limit, upper_limit = None, None, None, None
+            value_limit, value_limit_none, lower_limit, upper_limit = [], [], None, None
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
@@ -89,9 +89,12 @@ def run_app():
                 value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
-                min_value = min(all_values)
-                max_value = max(all_values)                    
-                value_limit_none = np.linspace(min_value, max_value, num=15)
+                if all_value:
+                    min_value = min(all_values)
+                    max_value = max(all_values)                    
+                    value_limit_none = np.linspace(min_value, max_value, num=15)
+                else:
+                    value_limit_none = []
                 
             ## 訂出小數位數的function
             def get_decimal(value):
