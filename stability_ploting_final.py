@@ -145,12 +145,8 @@ def run_app():
             
             ### 整個表設計
             chart_title = f"{condition}-{test_item}"
-            print(value_limit)
-            print(value_limit_none)
             value_limit = [round(value, max_decimal) for value in value_limit]
             value_limit_none = [round(value, max_decimal) for value in value_limit_none]
-            print(value_limit)
-            print(value_limit_none)
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
