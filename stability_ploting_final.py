@@ -115,10 +115,14 @@ def run_app():
             
             value_limit = [round(value, max_decimal) for value in value_limit]
             print(value_limit)
+            
             if value_limit == None:
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
-                all_values = [round(value, max_decimal) for value in all_values]
-                return all_value
+                min_value = min(all_values)
+                max_value = max(all_values)                    
+                value_limit_none = np.linspace(min_value, max_value, num=15)
+                value_limit_none = [round(value, max_decimal) for value in value_limit_none]
+                return value_limit_none
                 
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
@@ -156,11 +160,7 @@ def run_app():
             if value_limit:
                 ax.set_yticks(value_limit)
             else:
-                print(all_values)
-                min_value = min(all_values)
-                max_value = max(all_values)
-                ax.set_yticks(np.linspace(min_value, max_value, num=15))
-                
+                ax.set_yticks(value_limit_none)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
             ax.grid(True)
