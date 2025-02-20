@@ -90,11 +90,7 @@ def run_app():
                 num = 7
                 value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
-                all_values = [value for row in datasets for value in row[1:] if value is not None]
-                lower_limit = min(all_values)
-                upper_limit = max(all_values)
-                num = 7
-                value_limit = np.linspace(lower_limit*0.9, upper_limit*1.09, num=num)
+                value_limit = []
                 
             ## 訂出小數位數
             def get_decimal(value):
@@ -146,7 +142,13 @@ def run_app():
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
-            ax.set_yticks(value_limit)
+            if value_limit:
+                ax.set_yticks(value_limit)
+            else:
+                all_values = [value for row in datasets for value in row[1:] if value is not None]
+                min_value = min(all_values)
+                max_value = max(all_values)
+                ax.set_yticks(np.linspace(min_value, max_value, num=15))
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
             ax.grid(True)
