@@ -112,8 +112,14 @@ def run_app():
                 
             ### 製作折線圖
             chart_title = f"{condition}-{test_item}"
+            
             value_limit = [round(value, max_decimal) for value in value_limit]
-
+            print(value_limit)
+            if value_limit == None:
+                all_values = [value for row in datasets for value in row[1:] if value is not None]
+                all_values = [round(value, max_decimal) for value in all_values]
+                return all_value
+                
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
@@ -150,13 +156,10 @@ def run_app():
             if value_limit:
                 ax.set_yticks(value_limit)
             else:
-                all_values = [value for row in datasets for value in row[1:] if value is not None]
-                all_values = [round(value, max_decimal) for value in all_values if isinstance(value, (int, float))]
                 print(all_values)
                 min_value = min(all_values)
                 max_value = max(all_values)
                 ax.set_yticks(np.linspace(min_value, max_value, num=15))
-                ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"{x:.{max_decimal}f}"))
                 
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
