@@ -71,7 +71,7 @@ def run_app():
             if end_idx != -1:
                 chart_y_label = unit_ori[:end_idx]
                 
-            value_limit, value_limit_none, lower_limit, upper_limit = [], [], None, None
+            value_limit, value_limit_none, lower_limit, upper_limit = None, None, None, None
             if data_total[0][2] == "±":
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
@@ -148,14 +148,14 @@ def run_app():
             
             ### 整個表設計
             chart_title = f"{condition}-{test_item}"
-            if value_limit is not None:
+            if value_limit:
                 value_limit = [round(value, max_decimal) for value in value_limit]        
             else:
                 value_limit_none = [round(value, max_decimal) for value in value_limit_none]  
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
-            if value_limit is not None:
+            if value_limit:
                 ax.set_yticks(value_limit)
             else:
                 ax.set_yticks(value_limit_none)
