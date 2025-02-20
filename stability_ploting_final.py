@@ -88,7 +88,10 @@ def run_app():
                 num = 7
                 value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
             else:
-                value_limit = []
+                all_values = [value for row in datasets for value in row[1:] if value is not None]
+                min_value = min(all_values)
+                max_value = max(all_values)                    
+                value_limit_none = np.linspace(min_value, max_value, num=15)
                 
             ## 訂出小數位數的function
             def get_decimal(value):
@@ -142,16 +145,16 @@ def run_app():
             
             ### 整個表設計
             chart_title = f"{condition}-{test_item}"
+            print(value_limit)
+            print(value_limit_none)
             value_limit = [round(value, max_decimal) for value in value_limit]
+            value_limit_none = [round(value, max_decimal) for value in value_limit_none]
+            print(value_limit)
+            print(value_limit_none)
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
             ax.set_ylabel(chart_y_label, fontsize=15)
             if value_limit == []:
-                all_values = [value for row in datasets for value in row[1:] if value is not None]
-                min_value = min(all_values)
-                max_value = max(all_values)                    
-                value_limit_none = np.linspace(min_value, max_value, num=15)
-                value_limit_none = [round(value, max_decimal) for value in value_limit_none]
                 ax.set_yticks(value_limit_none)
             else:
                 ax.set_yticks(value_limit)
