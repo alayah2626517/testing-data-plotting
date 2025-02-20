@@ -90,6 +90,13 @@ def run_app():
 
             ## 訂出小數位數
             max_decimal = get_max_decimal(datasets)
+                
+            ### 製作折線圖
+            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
+            for row in datasets:
+                label = row[0]  # 每一行的標籤
+                values = row[1:]  # 每一行的數據（跳過標籤）
+                ax.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
 
             ##定義y軸上下限
             value_limit, value_limit_none, lower_limit, upper_limit = [], [], None, None
@@ -121,13 +128,6 @@ def run_app():
                 value_limit_none = np.linspace(min_value, max_value, num=15)
                 value_limit_none = [round(value, max_decimal) for value in value_limit_none]
                 ax.set_yticks(value_limit_none)
-                
-            ### 製作折線圖
-            fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
-            for row in datasets:
-                label = row[0]  # 每一行的標籤
-                values = row[1:]  # 每一行的數據（跳過標籤）
-                ax.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
                 
             ### 在圖上設定規格上下限
             if lower_limit is not None:
