@@ -90,21 +90,28 @@ def run_app():
             else:
                 value_limit = []
                 
-            ## 訂出小數位數
+            ## 訂出小數位數的function
             def get_decimal(value):
                 if isinstance(value, (int, float)):
-                    if '.' in str(value):
-                        return len(str(value).split(".")[1])
+                    value_str = str(value).split(".")
+                    if len(value_str) > 1:
+                        return len(value_str[1].rstrip('0'))
                     return 0
                 return 0
                 
+            def get_max_decimal(datasets):
+                max_decimal = 0
+                for row in datasets:
+                    for value in row[1:]:
+                        if isinstance(value, (int, float)) and value is not None:
+                            max_decimal = max(max_decimal, get_decimal(value))
+                return max_decimal
+
+            ## 訂出小數位數
+            max_decimal = get_max_decimal(datasets)
+                
             ### 製作折線圖
             chart_title = f"{condition}-{test_item}"
-            
-            for row in datasets:
-                for value in row[1:]:
-                    if value is not None:
-                        max_decimal = get_decimal(value)
             value_limit = [round(value, max_decimal) for value in value_limit]
 
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
@@ -149,6 +156,8 @@ def run_app():
                 min_value = min(all_values)
                 max_value = max(all_values)
                 ax.set_yticks(np.linspace(min_value, max_value, num=15))
+                ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"{x:.{max_decimal}f}"))
+                
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
             ax.grid(True)
