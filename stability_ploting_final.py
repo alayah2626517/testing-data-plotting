@@ -144,6 +144,7 @@ def run_app():
                 ax.set_yticks(value_limit)
             else:
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
+                all_values = [round(value, max_decimal) for value in all_values]
                 min_value = min(all_values)
                 max_value = max(all_values)
                 ax.set_yticks(np.linspace(min_value, max_value, num=15))
