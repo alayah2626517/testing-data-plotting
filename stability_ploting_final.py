@@ -74,22 +74,14 @@ def run_app():
             ## 訂出小數位數的function
             def get_decimal(value):
                 if isinstance(value, (int, float)):
-                    value_str = str(value).split(".")
-                    if len(value_str) > 1:
-                        return len(value_str[1].rstrip('0'))
+                    if '.' in str(value):
+                        return len(str(value).split(".")[1])
                     return 0
                 return 0
-                
-            def get_max_decimal(datasets):
-                max_decimal = 0
-                for row in datasets:
-                    for value in row[1:]:
-                        if isinstance(value, (int, float)) and value is not None:
-                            max_decimal = max(max_decimal, get_decimal(value))
-                return max_decimal
-
-            ## 訂出小數位數
-            max_decimal = get_max_decimal(datasets)
+            for row in datasets:
+                for value in row[1:]:
+                    if value is not None:
+                        max_decimal = get_decimal(value)
                 
             ### 製作折線圖
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
@@ -125,7 +117,7 @@ def run_app():
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
                 min_value = min(all_values)
                 max_value = max(all_values)                    
-                value_limit_none = np.linspace(min_value, max_value, num=15)
+                value_limit_none = np.linspace(min_value, max_value, num=10)
                 value_limit_none = [round(value, max_decimal) for value in value_limit_none]
                 ax.set_yticks(value_limit_none)
                 
