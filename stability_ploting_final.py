@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 from openpyxl import load_workbook
 import numpy as np
 
-
 def run_app():
     ## 建立窗口
     root = tk.Tk()
