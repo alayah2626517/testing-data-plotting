@@ -5,6 +5,7 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter.constants import *
+import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 from openpyxl import load_workbook
 import numpy as np
@@ -96,32 +97,36 @@ def run_app():
                 lower_limit = data_total[0][1]-data_total[0][3]
                 upper_limit = data_total[0][1]+data_total[0][3]
                 num = 7
-                value_limit = np.linspace(lower_limit, upper_limit, num=num)
+                value_limit = np.linspace(lower_limit*0.96, upper_limit*1.02, num=num)
                 value_limit = [round(value, max_decimal) for value in value_limit]
                 ax.set_yticks(value_limit)
                 ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
                 ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
+                ax.text(x=-1.94, y=lower_limit, s=f"lower_limit: {lower_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
+                ax.text(x=-1.94, y=upper_limit, s=f"upper_limit: {upper_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
                 num = 15
-                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.08, num=num)
+                value_limit = np.linspace(upper_limit-distance*(num-1), upper_limit*1.02, num=num)
                 value_limit = [round(value, max_decimal) for value in value_limit]
                 ax.set_yticks(value_limit)
                 ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
+                ax.text(x=-1.94, y=upper_limit, s=f"upper_limit: {upper_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
                 num = 7
-                value_limit = np.linspace(lower_limit*0.9, lower_limit+distance*(num-1), num=num)
+                value_limit = np.linspace(lower_limit*0.96, lower_limit+distance*(num-1), num=num)
                 value_limit = [round(value, max_decimal) for value in value_limit]
                 ax.set_yticks(value_limit)
                 ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
+                ax.text(x=-1.94, y=lower_limit, s=f"lower_limit: {lower_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
             else:
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
                 min_value = min(all_values)
                 max_value = max(all_values)                    
-                value_limit_none = np.linspace(min_value, max_value, num=10)
+                value_limit_none = np.linspace(min_value*0.96, max_value*1.02)
                 value_limit_none = [round(value, max_decimal) for value in value_limit_none]
                 ax.set_yticks(value_limit_none)
             
@@ -146,6 +151,7 @@ def run_app():
             chart_title = f"{condition}-{test_item}"
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
+            ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.grid(True, linestyle='--', alpha=0.6)
             ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
