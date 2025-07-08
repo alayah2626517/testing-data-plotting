@@ -64,6 +64,7 @@ def run_app():
             test_item = data_total[0][0].split("(")[0]
             datasets = data_total[2:]  # 數據本身
             x_axis = data_total[1][1:]  # time point
+            ax.set_xticks(x_axis)
             
             ## 找單位
             unit_ori = data_total[0][0].split("(")[1]
@@ -81,13 +82,13 @@ def run_app():
             for row in datasets:
                 for value in row[1:]:
                     if value is not None:
-                        max_decimal = get_decimal(value)
+                        max_decimal = max(max_decimal, get_decimal(value))
                 
             ### 製作折線圖
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
                 label = row[0]  # 每一行的標籤
-                values = row[1:]  # 每一行的數據（跳過標籤）
+                values = [v if v is not None else np.nan for v in row[1:]]  # 每一行的數據（跳過標籤）
                 ax.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
 
             ##定義y軸上下限
