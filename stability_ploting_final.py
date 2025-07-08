@@ -64,7 +64,6 @@ def run_app():
             test_item = data_total[0][0].split("(")[0]
             datasets = data_total[2:]  # 數據本身
             x_axis = data_total[1][1:]  # time point
-            ax.set_xticks(x_axis)
             
             ## 找單位
             unit_ori = data_total[0][0].split("(")[1]
@@ -86,6 +85,7 @@ def run_app():
                 
             ### 製作折線圖
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
+            ax.set_xticks(x_axis)
             for row in datasets:
                 label = row[0]  # 每一行的標籤
                 values = [v if v is not None else np.nan for v in row[1:]]  # 每一行的數據（跳過標籤）
