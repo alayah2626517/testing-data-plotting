@@ -63,7 +63,7 @@ def run_app():
             condition = data_total[1][0]
             test_item = data_total[0][0].split("(")[0]
             datasets = data_total[2:]  # 數據本身
-            x_axis = data_total[1][1:]  # time point
+            x_axis_raw = data_total[1][1:]  # time point
             x_axis = [int(x) if isinstance(x, (int, float)) else None for x in x_axis_raw]
             x_axis = [x for x in x_axis if x is not None]
             
