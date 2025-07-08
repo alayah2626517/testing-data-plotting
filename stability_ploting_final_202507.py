@@ -101,7 +101,7 @@ def run_app():
                 value_limit = np.linspace(lower_limit*0.96, upper_limit*1.02, num=num)
                 value_limit = [round(value, max_decimal) for value in value_limit]
                 ax.set_yticks(value_limit)
-                ax.set_xticks(x_axis)
+		ax.set_xticks(x_axis)
                 ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
                 ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
                 ax.text(x=-1.65, y=lower_limit, s=f"{lower_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='right', va='center')
