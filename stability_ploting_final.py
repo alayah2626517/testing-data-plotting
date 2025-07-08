@@ -15,7 +15,6 @@ def run_app():
     root = tk.Tk()
     root.title("Test results plotting tool")
     root.geometry('380x420')
-    root.iconbitmap('EG logo.ico')
     root.resizable(False, False)
 
     ## 輸入批次數量    
@@ -102,8 +101,8 @@ def run_app():
                 ax.set_yticks(value_limit)
                 ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
                 ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-                ax.text(x=-1.94, y=lower_limit, s=f"lower_limit: {lower_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
-                ax.text(x=-1.94, y=upper_limit, s=f"upper_limit: {upper_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
+                ax.text(x=-1.65, y=lower_limit, s=f"{lower_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='right', va='center')
+                ax.text(x=-1.65, y=upper_limit, s=f"{upper_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='right', va='center')
             elif data_total[0][2] in ["<", "≦"]:
                 upper_limit = data_total[0][3]
                 distance = upper_limit*0.05
@@ -112,7 +111,7 @@ def run_app():
                 value_limit = [round(value, max_decimal) for value in value_limit]
                 ax.set_yticks(value_limit)
                 ax.axhline(y=upper_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-                ax.text(x=-1.94, y=upper_limit, s=f"upper_limit: {upper_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
+                ax.text(x=-0.8, y=upper_limit, s=f"{upper_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='right', va='center')
             elif data_total[0][2] in [">", "≧"]:
                 lower_limit = data_total[0][3]
                 distance = lower_limit*0.05
@@ -121,7 +120,7 @@ def run_app():
                 value_limit = [round(value, max_decimal) for value in value_limit]
                 ax.set_yticks(value_limit)
                 ax.axhline(y=lower_limit, color='#8B0000', linestyle='--', linewidth=1.5)
-                ax.text(x=-1.94, y=lower_limit, s=f"lower_limit: {lower_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='center', va='center')
+                ax.text(x=-1, y=lower_limit, s=f"{lower_limit:.{max_decimal}f}", color='#8B0000', fontsize=12, ha='right', va='center')
             else:
                 all_values = [value for row in datasets for value in row[1:] if value is not None]
                 min_value = min(all_values)
@@ -154,7 +153,7 @@ def run_app():
             ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.grid(True, linestyle='--', alpha=0.6)
-            ax.legend(loc='lower left', bbox_to_anchor=(-0.22, -0.45), fontsize=10)
+            ax.legend(loc='upper right', fontsize=10) ##, bbox_to_anchor=(-0.22, -0.45)
             ax.grid(True)
             plt.subplots_adjust(bottom=0.2)  # 調整底部的間距
             plt.tight_layout(pad=1.0)
