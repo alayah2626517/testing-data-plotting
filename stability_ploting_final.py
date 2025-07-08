@@ -88,16 +88,20 @@ def run_app():
             ### 製作折線圖
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
             for row in datasets:
-                label = row[0]  # 每一行的標籤
+                label = row[0]
                 values = row[1:]
+            
+                # 搭配有效 x 值進行配對（處理掉 Excel 中的空格問題）
                 clean_x = []
                 clean_y = []
                 for x, y in zip(x_axis_raw, values):
                     if isinstance(x, (int, float)):
                         clean_x.append(x)
-                        clean_y.append(float(y) if isinstance(y, (int, float)) else np.nan)  # 每一行的數據（跳過標籤）
+                        clean_y.append(float(y) if isinstance(y, (int, float)) else np.nan)
+            
                 ax.plot(clean_x, clean_y, marker='o', linestyle='-', linewidth=2, alpha=0.6, label=label)
 
+                print("抓到的 x 軸:", x_axis)
             ##定義y軸上下限
             value_limit, value_limit_none, lower_limit, upper_limit = None, None, None, None
             if data_total[0][2] == "±":
