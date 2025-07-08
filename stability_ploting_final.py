@@ -63,8 +63,14 @@ def run_app():
             condition = data_total[1][0]
             test_item = data_total[0][0].split("(")[0]
             datasets = data_total[2:]  # 數據本身
-            x_axis_raw = list(data_total[1][1:])  # time point
-            x_axis = [x for x in x_axis_raw if isinstance(x, (int, float)) and not isinstance(x, bool)]
+            x_axis_raw = list(data_total[1][1:])
+            x_axis = []
+            for x in x_axis_raw:
+                try:
+                    x_val = float(x)
+                    x_axis.append(x_val)
+                except (TypeError, ValueError):
+                    continue
             
             ## 找單位
             unit_ori = data_total[0][0].split("(")[1]
