@@ -78,6 +78,7 @@ def run_app():
                         return len(str(value).split(".")[1])
                     return 0
                 return 0
+            max_decimal = 0
             for row in datasets:
                 for value in row[1:]:
                     if value is not None:
