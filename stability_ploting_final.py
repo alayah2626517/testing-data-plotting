@@ -63,9 +63,8 @@ def run_app():
             condition = data_total[1][0]
             test_item = data_total[0][0].split("(")[0]
             datasets = data_total[2:]  # 數據本身
-            x_axis_raw = data_total[1][1:]  # time point
-            x_axis = [int(x) if isinstance(x, (int, float)) else None for x in x_axis_raw]
-            x_axis = [x for x in x_axis if x is not None]
+            x_axis_raw = list(data_total[1][1:])  # time point
+            x_axis = [x for x in x_axis_raw if isinstance(x, (int, float)) and not isinstance(x, bool)]
             
             ## 找單位
             unit_ori = data_total[0][0].split("(")[1]
@@ -94,11 +93,10 @@ def run_app():
                 clean_x = []
                 clean_y = []
                 for x, y in zip(x_axis_raw, values):
-                    if x is not None and isinstance(x, (int, float)):
+                    if isinstance(x, (int, float)):
                         clean_x.append(x)
                         clean_y.append(float(y) if isinstance(y, (int, float)) else np.nan)  # 每一行的數據（跳過標籤）
-                #values = [float(v) if isinstance(v, (int, float)) else np.nan for v in row[1:]]  
-                ax.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
+                ax.plot(clean_x, clean_y, marker='o', linestyle='-', linewidth=2, alpha=0.6, label=label)
 
             ##定義y軸上下限
             value_limit, value_limit_none, lower_limit, upper_limit = None, None, None, None
