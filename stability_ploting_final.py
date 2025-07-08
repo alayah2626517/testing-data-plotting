@@ -56,7 +56,7 @@ def run_app():
         for sheet in sheet_name:
             sheet = wb[sheet]
             data_total = []
-            for data in sheet.iter_rows(min_row=1, max_row=batch_value+2, min_col=1, max_col=10, values_only=True):
+            for data in sheet.iter_rows(min_row=1, max_row=batch_value+2, min_col=1, values_only=True):
                 data_total.append(data)
 
             ### 定義變數
@@ -71,6 +71,7 @@ def run_app():
                     x_axis.append(x_val)
                 except (TypeError, ValueError):
                     continue
+            print(f"抓到欄位數: {len(data_total[1])}, 抓到的時間點: {data_total[1][1:]}")
             
             ## 找單位
             unit_ori = data_total[0][0].split("(")[1]
@@ -107,7 +108,7 @@ def run_app():
             
                 ax.plot(clean_x, clean_y, marker='o', linestyle='-', linewidth=2, alpha=0.6, label=label)
 
-                print("抓到的 x 軸:", x_axis)
+                
             ##定義y軸上下限
             value_limit, value_limit_none, lower_limit, upper_limit = None, None, None, None
             if data_total[0][2] == "±":
