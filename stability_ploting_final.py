@@ -86,10 +86,9 @@ def run_app():
                 
             ### 製作折線圖
             fig, ax = plt.subplots(1, 1, sharex='col', figsize=(10, 8))
-            ax.set_xticks(x_axis)
             for row in datasets:
                 label = row[0]  # 每一行的標籤
-                values = [v if v is not None else np.nan for v in row[1:]]  # 每一行的數據（跳過標籤）
+                values = [float(v) if isinstance(v, (int, float)) else np.nan for v in row[1:]]  # 每一行的數據（跳過標籤）
                 ax.plot(x_axis, values, marker='o', linestyle='-', linewidth=2, alpha = 0.6, label=label)
 
             ##定義y軸上下限
@@ -152,6 +151,7 @@ def run_app():
             chart_title = f"{condition}-{test_item}"
             ax.set_title(chart_title, fontsize=18, fontweight='bold')
             ax.set_xlabel("Time point (months)")
+            ax.set_xticks(x_axis)
             ax.yaxis.set_major_formatter(ticker.FormatStrFormatter(f"%.{max_decimal}f"))
             ax.set_ylabel(chart_y_label, fontsize=15)
             ax.grid(True, linestyle='--', alpha=0.6)
